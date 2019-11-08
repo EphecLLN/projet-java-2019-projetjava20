@@ -7,7 +7,14 @@ package model;
  * @author Florence Salpietro & Amélie Courtin
  *
  */
-public class Partie {
+public class CarteChiffre extends Carte{
+
+	/**
+	 * 
+	 */
+	public CarteChiffre() {
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @param args

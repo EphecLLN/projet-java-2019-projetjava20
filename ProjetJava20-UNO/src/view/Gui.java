@@ -1,13 +1,13 @@
 /**
  * 
  */
-package model;
+package view;
 
 /**
  * @author Florence Salpietro & Amélie Courtin
  *
  */
-public class Partie {
+public class Gui {
 
 	/**
 	 * @param args

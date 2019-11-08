@@ -7,7 +7,7 @@ package model;
  * @author Florence Salpietro & Amélie Courtin
  *
  */
-public class Partie {
+public class Pioche {
 
 	/**
 	 * @param args

@@ -7,6 +7,6 @@ package model;
  * @author Florence Salpietro & Amélie Courtin
  *
  */
-public class Joueur {
+public class Carte {
 
 }
