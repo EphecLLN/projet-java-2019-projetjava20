@@ -1,2 +1,3 @@
-# projet-java-2019-projetjava20
-projet-java-2019-projetjava20 created by GitHub Classroom
+# Projet Java UNO 2.0
+Groupe 20  : Amélie Courtin & Florence Salpietro
+
