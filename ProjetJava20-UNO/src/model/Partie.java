@@ -1,14 +1,9 @@
 /**
  * 
  */
-package model;
 
 /**
- * 
- */
-
-/**
- * @author Florence Salpietro & Amélie Courtin
+ * @author Courtin
  *
  */
 public class Partie {
@@ -129,4 +124,3 @@ public class Partie {
 	
 
 }
-
