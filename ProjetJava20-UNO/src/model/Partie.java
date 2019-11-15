@@ -8,7 +8,7 @@ package model;
  */
 
 /**
- * @author Courtin
+ * @author Florence Salpietro & Amélie Courtin
  *
  */
 public class Partie {
