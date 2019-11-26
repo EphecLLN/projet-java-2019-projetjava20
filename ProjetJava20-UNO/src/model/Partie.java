@@ -37,7 +37,17 @@ public class Partie {
 	 }
 
 
-
+	 public void determinerGagnant () {
+		 //parcourir la liste de catre de chaque, verifier si elle est vide ou non, retourner le joueur dont la liste est vie et alors il est gagnant
+		//boucle for 
+		 for (int i=0; i<listeJoueur.size(); i++) {
+			 
+			 Joueur j = listeJoueur.get(i);
+			 j.getListCartes().isEmpty();
+			 
+			 
+			 
+		 }
 	 
 	 //accesseurs mutateurs
 
