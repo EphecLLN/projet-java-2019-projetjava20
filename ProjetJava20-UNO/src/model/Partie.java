@@ -35,15 +35,22 @@ public class Partie {
 	 }
 	 
 	 public int calculerScore (Joueur gagnant) {
+		 
+		 score = 0;
+		
 		 for(int i=0; i<listeJoueur.size(); i++) {
 			 
+			 int scoreI = 0;
 			 Joueur j = listeJoueur.get(i);
 			 ArrayList<Carte> cartes = j.getListCartesJ();
 			 for( int x=0;x<cartes.size();x++){
 				 
+				scoreI += cartes.get(x).getValeur();
+				
 			 
 			 }
 			 
+			 score += scoreI;
 		 }
 		return score;
 		 
