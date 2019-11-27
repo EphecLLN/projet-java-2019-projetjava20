@@ -54,7 +54,7 @@ public class Partie {
 		//parcourir la liste de carte de chaque joueur, verifier si elle est vide ou non, retourner le joueur dont la liste est vie et alors il est gagnant
 		//boucle for 
 		 for (int i=0; i<listeJoueur.size(); i++) {
-			 
+			 	
 			 Joueur j = listeJoueur.get(i);
 			 ArrayList<Carte> cartes = j.getListCartesJ();
 			 

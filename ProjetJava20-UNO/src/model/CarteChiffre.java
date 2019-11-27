@@ -9,19 +9,11 @@ package model;
  */
 public class CarteChiffre extends Carte{
 
-	/**
-	 * 
-	 */
-	public CarteChiffre() {
+	public CarteChiffre(String categorie, String couleur, int valeur) {
+		super(categorie, couleur, valeur);
 		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
-	}
 
 }
