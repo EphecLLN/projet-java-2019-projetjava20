@@ -26,12 +26,42 @@ public class Partie {
 	}
 
 	
-	 public void determinerSens() { 
+	 //public void determinerSens() { 
 		 
-	 }
+	 //}
 	 
 	 public Joueur determinerJoueur () {
-		return joueur ;
+		 if (sens==0){
+		 for (int i=0; i<listeJoueur.size(); i++) {
+			if (listeJoueur.get(i).equals(joueurEnCours)) {
+				if(i==listeJoueur.size()-1){
+					joueurEnCours=listeJoueur.get(0);
+					
+				}
+				else {
+					joueurEnCours=listeJoueur.get(i+1);
+				};
+			}
+		 } 
+		 
+		 if(sens==1) {
+			 for (int i=0; i<listeJoueur.size(); i++) {
+					if (listeJoueur.get(i).equals(joueurEnCours)) {
+						if(i==0){
+							
+							joueurEnCours=listeJoueur.get(listeJoueur.size()-1);
+							
+						}
+						else {
+							joueurEnCours=listeJoueur.get(i-1);
+						};
+					}
+				 } 
+				 
+			 
+		 }
+		 }
+		return joueurEnCours ;
 		 
 	 }
 	 
