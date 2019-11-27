@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 /**
  * @author Courtin
  *
@@ -12,6 +14,7 @@ public class Partie {
 	public int nbJoueur;
 	public Joueur gagnant;
 	protected int score;
+	public ArrayList <Joueur> listeJoueur;
 
 	public Partie(Joueur joueur, Joueur joueurEnCours, int sens, int nbJoueur, Joueur gagnant) {
 		this.joueur = joueur;
@@ -31,19 +34,34 @@ public class Partie {
 		 
 	 }
 	 
-	 public int calculerScore (Joueur joueur) {
+	 public int calculerScore (Joueur gagnant) {
+		 for(int i=0; i<listeJoueur.size(); i++) {
+			 
+			 Joueur j = listeJoueur.get(i);
+			 ArrayList<Carte> cartes = j.getListCartesJ();
+			 for( int x=0;x<cartes.size();x++){
+				 
+			 
+			 }
+			 
+		 }
 		return score;
 		 
 	 }
 
 
-	 public void determinerGagnant () {
-		 //parcourir la liste de catre de chaque, verifier si elle est vide ou non, retourner le joueur dont la liste est vie et alors il est gagnant
+	 public void determinerGagnant() {
+		//parcourir la liste de carte de chaque joueur, verifier si elle est vide ou non, retourner le joueur dont la liste est vie et alors il est gagnant
 		//boucle for 
 		 for (int i=0; i<listeJoueur.size(); i++) {
 			 
 			 Joueur j = listeJoueur.get(i);
-			 j.getListCartes().isEmpty();
+			 ArrayList<Carte> cartes = j.getListCartesJ();
+			 
+			 if (cartes.isEmpty()) {
+				 gagnant =j;
+			 };
+			 }
 			 
 			 
 			 
