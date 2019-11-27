@@ -1,11 +1,10 @@
-/**
- * 
- */
+package model;
 
 /**
  * @author Courtin
  *
- */
+ **/
+
 public class Partie {
 	
 	public Joueur joueur;
@@ -13,6 +12,7 @@ public class Partie {
 	public int sens;
 	public int nbJoueur;
 	public Joueur gagnant;
+	private int score;
 
 	public Partie(Joueur joueur, Joueur joueurEnCours, int sens, int nbJoueur, Joueur gagnant) {
 		this.joueur = joueur;
@@ -36,7 +36,7 @@ public class Partie {
 	 }
 	 
 	 public int calculerScore (Joueur joueur) {
-		return joueur;
+		return score;
 		 
 	 }
 
