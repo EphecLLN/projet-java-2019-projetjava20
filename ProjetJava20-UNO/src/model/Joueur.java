@@ -53,6 +53,19 @@ public class Joueur {
 		
 	}
 	
+	/**
+	 * Methode equals 
+	 */
+	public boolean equals(Object obj){
+		if (this==obj){
+			return true;
+		}
+		if (obj==null){
+			return false;
+		}
+		return false;
+	}
+	
 /*---------------------------GETTERS & SETTERS---------------------------*/
 	/**
 	 * @return the nom
