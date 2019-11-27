@@ -15,6 +15,7 @@ public class Partie {
 	public Joueur gagnant;
 	protected int score;
 	public ArrayList <Joueur> listeJoueur;
+	public Joueur vainqueur;
 
 	public Partie(Joueur joueur, Joueur joueurEnCours, int sens, int nbJoueur, Joueur gagnant) {
 		this.joueur = joueur;
@@ -73,6 +74,14 @@ public class Partie {
 			 
 			 
 		 }
+	 
+	 public void determinerVainqueur() {
+		 for (int i=0; i<listeJoueur.size(); i++) { 
+			 if(listeJoueur.get(i).getScore()>500){
+				 vainqueur = listeJoueur.get(i);
+			 }
+		 }
+	 }
 	 
 	 //accesseurs mutateurs
 
