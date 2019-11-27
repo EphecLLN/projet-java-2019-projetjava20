@@ -13,16 +13,18 @@ public class Joueur {
 	
 	private String nom;
 	private int nbCartes;
-	private ArrayList <Carte> listCartes;
+	private ArrayList <Carte> listCartesJ;
+	protected int score;
 	
 	/**
 	 * Constructeur de la classe Joueur
 	 * @param nom
-	 * @param listCartes
+	 * @param listCartesJ
 	 */
-	public Joueur(String nom, ArrayList<Carte> listCartes){
+	public Joueur(String nom, ArrayList<Carte> listCartesJ, int score){
 		this.nom  = nom;
-		this.listCartes = listCartes;
+		this.listCartesJ = listCartesJ;
+		this.score = score;
 	}
 	
 	/**
@@ -30,7 +32,7 @@ public class Joueur {
 	 * @param carte
 	 */
 	public void insererCarte(Carte carte){
-		listCartes.add(carte);
+		listCartesJ.add(carte);
 	}
 	
 	/**
@@ -38,8 +40,8 @@ public class Joueur {
 	 * @param carte
 	 */
 	public void tirerCarte(Carte carte){
-		if (listCartes.contains(carte)){
-			listCartes.remove(carte);
+		if (listCartesJ.contains(carte)){
+			listCartesJ.remove(carte);
 		}
 		
 	}
@@ -83,15 +85,29 @@ public class Joueur {
 	/**
 	 * @return the listCartes
 	 */
-	public ArrayList<Carte> getListCartes() {
-		return listCartes;
+	public ArrayList<Carte> getListCartesJ() {
+		return listCartesJ;
 	}
 
 	/**
 	 * @param listCartes the listCartes to set
 	 */
-	public void setListCartes(ArrayList<Carte> listCartes) {
-		this.listCartes = listCartes;
+	public void setListCartesJ(ArrayList<Carte> listCartesJ) {
+		this.listCartesJ = listCartesJ;
+	}
+
+	/**
+	 * @return the score
+	 */
+	public int getScore() {
+		return score;
+	}
+
+	/**
+	 * @param score the score to set
+	 */
+	public void setScore(int score) {
+		this.score = score;
 	}
 	
 	
