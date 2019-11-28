@@ -9,11 +9,10 @@ package model;
  */
 public class CarteCouleur extends CarteAction {
 
-	/**
-	 * 
-	 */
-	public CarteCouleur() {
+	public CarteCouleur(String categorie, String couleur, int valeur) {
+		super(categorie, couleur, valeur);
 		// TODO Auto-generated constructor stub
 	}
+
 
 }
