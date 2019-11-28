@@ -15,6 +15,7 @@ public class Joueur {
 	private int nbCartes;
 	private ArrayList <Carte> listCartesJ;
 	protected int score;
+	protected static ArrayList<Joueur> listJoueurs;
 	
 	/**
 	 * Constructeur de la classe Joueur
@@ -25,6 +26,7 @@ public class Joueur {
 		this.nom  = nom;
 		this.listCartesJ = listCartesJ;
 		this.score = score;
+		listJoueurs.add(this);
 	}
 	
 	/**
@@ -129,6 +131,22 @@ public class Joueur {
 	public void setScore(int score) {
 		this.score = score;
 	}
+
+	/**
+	 * @return the listJoueurs
+	 */
+	public static ArrayList<Joueur> getListJoueurs() {
+		return listJoueurs;
+	}
+
+	/**
+	 * @param listJoueurs the listJoueurs to set
+	 */
+	public void setListJoueurs(ArrayList<Joueur> listJoueurs) {
+		this.listJoueurs = listJoueurs;
+	}
+	
+	
 	
 	
 }

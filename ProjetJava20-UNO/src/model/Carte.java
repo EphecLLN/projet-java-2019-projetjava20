@@ -71,6 +71,20 @@ public class Carte {
 	public void setValeur(int valeur) {
 		this.valeur = valeur;
 	}
+
+	/**
+	 * @return the listCartes
+	 */
+	public ArrayList<Carte> getListCartes() {
+		return listCartes;
+	}
+
+	/**
+	 * @param listCartes the listCartes to set
+	 */
+	public void setListCartes(ArrayList<Carte> listCartes) {
+		this.listCartes = listCartes;
+	}
 	
 	
 }
