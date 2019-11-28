@@ -3,18 +3,32 @@
  */
 package model;
 
+import java.util.ArrayList;
+
 /**
  * @author Florence Salpietro & Amélie Courtin
  *
  */
 public class Talon {
 
+	public ArrayList<Carte> listCartesT;
+	
+	public Talon(ArrayList<Carte> listCartesT){
+		this.listCartesT = listCartesT;
+	}
+	
 	/**
-	 * @param args
+	 * 
+	 * @return
 	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+	public boolean estOk(){
+		return true;
 	}
 
+	/**
+	 * 
+	 */
+	public void getDerniere(){
+		
+	}
 }

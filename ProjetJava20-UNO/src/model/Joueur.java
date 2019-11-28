@@ -54,6 +54,13 @@ public class Joueur {
 	}
 	
 	/**
+	 * Methode permettant de piocher une nouvelle carte dans la pioche
+	 */
+	public void piocher(){
+		
+	}
+	
+	/**
 	 * Methode equals 
 	 */
 	public boolean equals(Object obj){
