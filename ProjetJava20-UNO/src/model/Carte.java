@@ -3,6 +3,8 @@
  */
 package model;
 
+import java.util.ArrayList;
+
 /**
  * @author Florence Salpietro & Amélie Courtin
  *
@@ -13,6 +15,7 @@ public class Carte {
 	private String couleur;
 	private int valeur;
 
+	protected ArrayList<Carte> listCartes;
 	/**
 	 * Constructeur de Carte
 	 * @param categorie
@@ -23,6 +26,7 @@ public class Carte {
 		this.categorie = categorie;
 		this.couleur = couleur;
 		this.valeur = valeur;
+		listCartes.add(this);
 		
 	}
 

@@ -1,6 +1,3 @@
-/**
- * 
- */
 package model;
 
 import java.util.ArrayList;
@@ -12,6 +9,7 @@ import java.util.ArrayList;
 public class Pioche {
 	
 	public ArrayList<Carte> listCartesP;
+	public int nbCarte = listCartesP.size();
 	
 	
 	public Pioche(ArrayList<Carte> listCartesP){
