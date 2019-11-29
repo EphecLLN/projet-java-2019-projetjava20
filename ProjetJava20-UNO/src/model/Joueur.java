@@ -13,7 +13,7 @@ public class Joueur {
 	
 	private String nom;
 	private int nbCartes;
-	private ArrayList <Carte> listCartesJ;
+	private ArrayList <Carte> listCartesJ = new ArrayList<Carte>();
 	protected int score;
 	protected static ArrayList<Joueur> listJoueurs = new ArrayList<Joueur>();
 	

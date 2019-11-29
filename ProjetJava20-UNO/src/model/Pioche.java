@@ -9,14 +9,20 @@ import java.util.Collections;
  */
 public class Pioche {
 	
-	public ArrayList<Carte> listCartesP=  new ArrayList<Carte>();
-	public int nbCarte = listCartesP.size();
+	private ArrayList<Carte> listCartesP;
+	//private int nbCarte = listCartesP.size();
 	
-	
+	/**
+	 * Constructeur
+	 * @param listCartesP
+	 */
 	public Pioche(ArrayList<Carte> listCartesP){
 		this.listCartesP = listCartesP;
 	}
 
+	/**
+	 * Melange le tas de cartes
+	 */
 	public void melanger(){
 	
 		Collections.shuffle(listCartesP);
@@ -29,18 +35,26 @@ public class Pioche {
 		
 	}
 	
+	/**
+	 * Methode permettant de distribuer 7 cartes à chaque joueur
+	 */
 	public void distribuer(){
 		
 		melanger();
 		
 		for(int i=0; i<Joueur.getListJoueurs().size() ; i++){
-			for(int j=0; j<8;j++){
-			Joueur.getListJoueurs().get(i).getListCartesJ().add(listCartesP.get(j));
-			listCartesP.remove(j);
-			}
+			for(int j=0; j<7;j++){
+				Joueur.getListJoueurs().get(i).insererCarte(listCartesP.get(j));
+				System.out.println("rempli");
+				listCartesP.remove(j);
+				}
 		}
 		
 	}
+	
+	
+	
+	
 
 	/**
 	 * @return the listCartesP
@@ -56,19 +70,7 @@ public class Pioche {
 		this.listCartesP = listCartesP;
 	}
 
-	/**
-	 * @return the nbCarte
-	 */
-	public int getNbCarte() {
-		return nbCarte;
-	}
 
-	/**
-	 * @param nbCarte the nbCarte to set
-	 */
-	public void setNbCarte(int nbCarte) {
-		this.nbCarte = nbCarte;
-	}
 	
 	
 }

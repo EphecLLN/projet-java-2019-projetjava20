@@ -19,7 +19,7 @@ import model.Talon;
 public class Console {
 	
 	
-	protected static Pioche pioche;
+	//protected static Pioche pioche;
 	static Scanner sc = new Scanner(System.in);
 	private static ArrayList<Carte> lisCart = new ArrayList<Carte>();
 
@@ -75,12 +75,13 @@ public class Console {
 		
 		ArrayList<Joueur> lj = new ArrayList();
 		lj = Joueur.getListJoueurs();
+		
 		Partie partie = new Partie(lj, null, 0, null);
-		
+			
 		creaCartes();
-		
-		pioche.setListCartesP(lisCart);
-
+				
+		Pioche pioche = new Pioche(lisCart);
+				
 		pioche.distribuer();
 		
 		Talon talon = new Talon(null);//creer avec la derniere carte de la pioche
