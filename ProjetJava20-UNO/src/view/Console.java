@@ -69,7 +69,7 @@ public class Console {
 		
 		for(int j =0; j<tab.length; j++){
 			String name = (String) tab[j];
-			tab[j] = new Joueur(name,null,0);
+			tab[j] = new Joueur(name,new ArrayList<Carte>(),0);
 
 		}
 		
@@ -84,7 +84,11 @@ public class Console {
 				
 		pioche.distribuer();
 		
-		Talon talon = new Talon(null);//creer avec la derniere carte de la pioche
+		Talon talon = new Talon(new ArrayList<Carte>());//creer avec la derniere carte de la pioche
+		
+		talon.getListCartesT().add(pioche.retirer()); // ajoute la derniere carte de la pioche au talon
+		
+		System.out.println(partie.determinerJoueur());
 		
 
 	}

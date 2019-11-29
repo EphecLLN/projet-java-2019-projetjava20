@@ -35,6 +35,7 @@ public class Joueur {
 	 */
 	public void insererCarte(Carte carte){
 		listCartesJ.add(carte);
+		
 	}
 	
 	/**

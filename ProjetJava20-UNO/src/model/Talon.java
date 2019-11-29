@@ -44,5 +44,21 @@ public class Talon {
 		int i = listCartesT.size() -1;
 		return listCartesT.get(i);
 	}
+
+	/**
+	 * @return the listCartesT
+	 */
+	public ArrayList<Carte> getListCartesT() {
+		return listCartesT;
+	}
+
+	/**
+	 * @param listCartesT the listCartesT to set
+	 */
+	public void setListCartesT(ArrayList<Carte> listCartesT) {
+		this.listCartesT = listCartesT;
+	}
+	
+	
 	
 }

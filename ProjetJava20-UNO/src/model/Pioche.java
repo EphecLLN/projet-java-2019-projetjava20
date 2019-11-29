@@ -31,8 +31,10 @@ public class Pioche {
 	/**
 	 * Methode permettant de retirer la derniere carte de la pioche 
 	 */
-	public void retirer(){
-		
+	public Carte retirer(){
+		Carte lastCart = listCartesP.get(0);
+		listCartesP.remove(0);
+		return lastCart;
 	}
 	
 	/**
@@ -45,7 +47,6 @@ public class Pioche {
 		for(int i=0; i<Joueur.getListJoueurs().size() ; i++){
 			for(int j=0; j<7;j++){
 				Joueur.getListJoueurs().get(i).insererCarte(listCartesP.get(j));
-				System.out.println("rempli");
 				listCartesP.remove(j);
 				}
 		}
