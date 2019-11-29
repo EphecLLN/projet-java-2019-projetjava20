@@ -1,21 +1,22 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Observable;
 
 /**
  * @author Courtin
  *
  */
-public class Partie {
+public class Partie extends Observable{
 	
 	public Joueur joueur;
 	public  Joueur joueurEnCours ;
 	public int sens;
 	public int nbJoueur;
-	public Joueur gagnant; //manche
+	public Joueur gagnant; //joueur qui gagne une manche
 	protected int score;
 	public ArrayList <Joueur> listeJoueurs;
-	public Joueur vainqueur; //partie
+	public Joueur vainqueur; //joueur qui gagne la partie partie
 
 	/**
 	 * Constructeur
