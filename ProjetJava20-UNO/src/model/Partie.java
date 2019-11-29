@@ -103,7 +103,7 @@ public class Partie extends Observable{
 	  * 
 	  */
 	 public Joueur determinerGagnant() {
-		//parcourir la liste de carte de chaque joueur, verifier si elle est vide ou non, retourner le joueur dont la liste est vie et alors il est gagnant
+		//parcourir la liste de carte de chaque joueur, verifier si elle est vide ou non, retourner le joueur dont la liste est vide et alors il est gagnant
 		//boucle for 
 		 for (int i=0; i<listeJoueurs.size(); i++) {
 			 	
