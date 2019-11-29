@@ -15,7 +15,7 @@ public class Carte {
 	private String couleur;
 	private int valeur;
 
-	protected ArrayList<Carte> listCartes;
+	protected ArrayList<Carte> listCartes = new ArrayList<Carte>();
 	/**
 	 * Constructeur de Carte
 	 * @param categorie

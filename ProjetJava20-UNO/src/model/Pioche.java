@@ -9,7 +9,7 @@ import java.util.Collections;
  */
 public class Pioche {
 	
-	public ArrayList<Carte> listCartesP;
+	public ArrayList<Carte> listCartesP=  new ArrayList<Carte>();
 	public int nbCarte = listCartesP.size();
 	
 	

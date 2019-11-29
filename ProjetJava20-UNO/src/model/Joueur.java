@@ -15,7 +15,7 @@ public class Joueur {
 	private int nbCartes;
 	private ArrayList <Carte> listCartesJ;
 	protected int score;
-	protected static ArrayList<Joueur> listJoueurs = null;
+	protected static ArrayList<Joueur> listJoueurs = new ArrayList<Joueur>();
 	
 	/**
 	 * Constructeur de la classe Joueur

@@ -20,6 +20,8 @@ public class Console {
 	
 	
 	protected static Pioche pioche;
+	static Scanner sc = new Scanner(System.in);
+
 
 	/**
 	 * 
@@ -29,8 +31,8 @@ public class Console {
 		System.out.println("[1] Démarrer une partie");
 		System.out.println("[2] Quitter ");
 		
-		Scanner scanner = new Scanner (System.in);
-		int  selection = scanner.nextInt();
+		//Scanner scanner = new Scanner (System.in);
+		int  selection = sc.nextInt();
 		
 		switch (selection){
 			case 1:
@@ -51,16 +53,19 @@ public class Console {
 	 * 
 	 */
 	public static void jeu(){
-		Scanner sc = new Scanner(System.in);
 		
 		System.out.println("Combien de joueurs participeront à cette partie ? ");
 		int nb = sc.nextInt();
 		Object[] tab = new Object[nb];
+		String nom = null;
 		
 		for (int i=1; i<=nb; i++){
 			System.out.println("Indiquer le nom du joueur"+ i);
-			String name = sc.nextLine();
-			tab[i-1] = name;
+			if ( sc.hasNextLine() ) {
+
+				nom = sc.nextLine();
+			}
+			tab[i-1] = nom;
 		}
 		
 		for(int j =0; j<tab.length; j++){
@@ -75,7 +80,7 @@ public class Console {
 		
 		creaCartes();
 
-		pioche.distribuer();
+		//pioche.distribuer();
 		
 		Talon talon = new Talon(null);//creer avec la derniere carte de la pioche
 		
