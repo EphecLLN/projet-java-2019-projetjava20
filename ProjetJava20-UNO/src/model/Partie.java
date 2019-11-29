@@ -12,11 +12,18 @@ public class Partie {
 	public  Joueur joueurEnCours ;
 	public int sens;
 	public int nbJoueur;
-	public Joueur gagnant;
+	public Joueur gagnant; //manche
 	protected int score;
 	public ArrayList <Joueur> listeJoueurs;
-	public Joueur vainqueur;
+	public Joueur vainqueur; //partie
 
+	/**
+	 * Constructeur
+	 * @param listeJoueurs
+	 * @param joueurEnCours
+	 * @param sens
+	 * @param gagnant
+	 */
 	public Partie(ArrayList<Joueur> listeJoueurs, Joueur joueurEnCours, int sens, Joueur gagnant) {
 		this.listeJoueurs = listeJoueurs;
 		this.joueurEnCours = joueurEnCours;
@@ -29,42 +36,47 @@ public class Partie {
 		 
 	 //}
 	 
-	 public Joueur determinerJoueur () {
+	/**
+	 * Determiner le joueur qui doit jouer 
+	 * @return
+	 */
+	public Joueur determinerJoueur () {
 		 if (sens==0){
-		 for (int i=0; i<listeJoueurs.size(); i++) {
-			if (listeJoueurs.get(i).equals(joueurEnCours)) {
+   		   for (int i=0; i<listeJoueurs.size(); i++) {
+			  if (listeJoueurs.get(i).equals(joueurEnCours)) {
 				if(i==listeJoueurs.size()-1){
-					joueurEnCours=listeJoueurs.get(0);
-					
+					joueurEnCours=listeJoueurs.get(0);					
 				}
-				else {
+				else{
 					joueurEnCours=listeJoueurs.get(i+1);
-				};
-			}
-		 } 
+				}
+			  }
+		 	} 
+		 }
 		 
 		 if(sens==1) {
 			 for (int i=0; i<listeJoueurs.size(); i++) {
 					if (listeJoueurs.get(i).equals(joueurEnCours)) {
-						if(i==0){
-							
-							joueurEnCours=listeJoueurs.get(listeJoueurs.size()-1);
-							
+						if(i==0){							
+							joueurEnCours=listeJoueurs.get(listeJoueurs.size()-1);							
 						}
 						else {
 							joueurEnCours=listeJoueurs.get(i-1);
-						};
+						}
 					}
-				 } 
-				 
-			 
+			  } 
 		 }
-		 }
-		return joueurEnCours ;
+		 
+		return joueurEnCours;
 		 
 	 }
 	 
-	 public int calculerScore (Joueur gagnant) {
+	/**
+	 *  
+	 * @param gagnant
+	 * @return
+	 */
+	public int calculerScore (Joueur gagnant) {
 		 
 		 score = 0;
 		
@@ -73,21 +85,23 @@ public class Partie {
 			 int scoreI = 0;
 			 Joueur j = listeJoueurs.get(i);
 			 ArrayList<Carte> cartes = j.getListCartesJ();
-			 for( int x=0;x<cartes.size();x++){
-				 
-				scoreI += cartes.get(x).getValeur();
-				
 			 
+			 for( int x=0;x<cartes.size();x++){
+				scoreI += cartes.get(x).getValeur();			 
 			 }
 			 
 			 score += scoreI;
 		 }
-		return score;
+		
+		 return score;
 		 
 	 }
 
-
-	 public void determinerGagnant() {
+	 /**
+	 * @return 
+	  * 
+	  */
+	 public Joueur determinerGagnant() {
 		//parcourir la liste de carte de chaque joueur, verifier si elle est vide ou non, retourner le joueur dont la liste est vie et alors il est gagnant
 		//boucle for 
 		 for (int i=0; i<listeJoueurs.size(); i++) {
@@ -98,12 +112,13 @@ public class Partie {
 			 if (cartes.isEmpty()) {
 				 gagnant =j;
 			 };
-			 }
-			 
-			 
-			 
-		 }
+		  }	
+		 return gagnant;
+	}
 	 
+	 /**
+	  * 
+	  */
 	 public void determinerVainqueur() {
 		 for (int i=0; i<listeJoueurs.size(); i++) { 
 			 if(listeJoueurs.get(i).getScore()>500){
@@ -111,44 +126,86 @@ public class Partie {
 			 }
 		 }
 	 }
-	 
-	 //accesseurs mutateurs
 
+
+/*---------------------------GETTERS & SETTERS---------------------------*/
+
+	 
+	/**
+	 * @return the joueur
+	 */
+	public Joueur getJoueur() {
+		return joueur;
+	}
+
+
+	/**
+	 * @param joueur the joueur to set
+	 */
+	public void setJoueur(Joueur joueur) {
+		this.joueur = joueur;
+	}
+
+
+	/**
+	 * @return the joueurEnCours
+	 */
 	public Joueur getJoueurEnCours() {
 		return joueurEnCours;
 	}
 
 
-
-
-
+	/**
+	 * @param joueurEnCours the joueurEnCours to set
+	 */
 	public void setJoueurEnCours(Joueur joueurEnCours) {
 		this.joueurEnCours = joueurEnCours;
 	}
 
 
-
-
-
+	/**
+	 * @return the sens
+	 */
 	public int getSens() {
 		return sens;
 	}
 
 
-
-
-
+	/**
+	 * @param sens the sens to set
+	 */
 	public void setSens(int sens) {
 		this.sens = sens;
 	}
 
 
+	/**
+	 * @return the nbJoueur
+	 */
+	public int getNbJoueur() {
+		return nbJoueur;
+	}
 
+
+	/**
+	 * @param nbJoueur the nbJoueur to set
+	 */
+	public void setNbJoueur(int nbJoueur) {
+		this.nbJoueur = nbJoueur;
+	}
+
+
+	/**
+	 * @return the gagnant
+	 */
 	public Joueur getGagnant() {
 		return gagnant;
 	}
 
 
+	/**
+	 * @param gagnant the gagnant to set
+	 */
 	public void setGagnant(Joueur gagnant) {
 		this.gagnant = gagnant;
 	}
@@ -200,7 +257,5 @@ public class Partie {
 	public void setVainqueur(Joueur vainqueur) {
 		this.vainqueur = vainqueur;
 	}
-	
-	
 
 }

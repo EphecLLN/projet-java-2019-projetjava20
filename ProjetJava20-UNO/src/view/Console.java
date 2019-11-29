@@ -78,6 +78,7 @@ public class Console {
 		pioche.distribuer();
 		
 		Talon talon = new Talon(null);//creer avec la derniere carte de la pioche
+		
 
 	}
 

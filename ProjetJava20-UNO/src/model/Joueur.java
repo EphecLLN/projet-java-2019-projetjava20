@@ -15,7 +15,7 @@ public class Joueur {
 	private int nbCartes;
 	private ArrayList <Carte> listCartesJ;
 	protected int score;
-	protected static ArrayList<Joueur> listJoueurs;
+	protected static ArrayList<Joueur> listJoueurs = null;
 	
 	/**
 	 * Constructeur de la classe Joueur
@@ -143,7 +143,7 @@ public class Joueur {
 	 * @param listJoueurs the listJoueurs to set
 	 */
 	public void setListJoueurs(ArrayList<Joueur> listJoueurs) {
-		this.listJoueurs = listJoueurs;
+		Joueur.listJoueurs = listJoueurs;
 	}
 	
 	

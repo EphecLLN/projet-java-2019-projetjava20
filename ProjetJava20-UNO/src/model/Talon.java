@@ -29,10 +29,8 @@ public class Talon {
 			}
 			if (carteAJouer.getValeur() == derniereCarte.getValeur()){
 				return true;
-			}	
-			
-		}
-		
+			}				
+		}		
 		// Carte action à ajouter
 		
 		return false;
@@ -46,4 +44,5 @@ public class Talon {
 		int i = listCartesT.size() -1;
 		return listCartesT.get(i);
 	}
+	
 }
