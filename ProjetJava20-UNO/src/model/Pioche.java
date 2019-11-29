@@ -41,4 +41,34 @@ public class Pioche {
 		}
 		
 	}
+
+	/**
+	 * @return the listCartesP
+	 */
+	public ArrayList<Carte> getListCartesP() {
+		return listCartesP;
+	}
+
+	/**
+	 * @param listCartesP the listCartesP to set
+	 */
+	public void setListCartesP(ArrayList<Carte> listCartesP) {
+		this.listCartesP = listCartesP;
+	}
+
+	/**
+	 * @return the nbCarte
+	 */
+	public int getNbCarte() {
+		return nbCarte;
+	}
+
+	/**
+	 * @param nbCarte the nbCarte to set
+	 */
+	public void setNbCarte(int nbCarte) {
+		this.nbCarte = nbCarte;
+	}
+	
+	
 }

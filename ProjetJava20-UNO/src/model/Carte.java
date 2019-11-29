@@ -26,7 +26,7 @@ public class Carte {
 		this.categorie = categorie;
 		this.couleur = couleur;
 		this.valeur = valeur;
-		listCartes.add(this);
+		//listCartes.add(this);
 		
 	}
 
