@@ -95,6 +95,8 @@ public class Partie extends Observable{
 		 }
 		
 		 return score;
+		 setChanged();
+		 notifyObservers();
 		 
 	 }
 
