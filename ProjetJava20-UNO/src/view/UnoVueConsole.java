@@ -23,7 +23,7 @@ public class UnoVueConsole extends UnoVue implements Observer{
 	private static ArrayList<Carte> lisCart = new ArrayList<Carte>();
 
 	
-	UnoVueConsole(Partie model, UnoController controller) {
+	public UnoVueConsole(Partie model, UnoController controller) {
 		super(model, controller);
 		sc = new Scanner(System.in);
 		// TODO Auto-generated constructor stub

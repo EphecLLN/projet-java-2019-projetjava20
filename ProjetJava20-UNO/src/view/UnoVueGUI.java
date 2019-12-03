@@ -8,7 +8,7 @@ import model.Partie;
 
 public class UnoVueGUI extends UnoVue implements Observer{
 
-	UnoVueGUI(Partie model, UnoController controller) {
+	public UnoVueGUI(Partie model, UnoController controller) {
 		super(model, controller);
 	}
 
