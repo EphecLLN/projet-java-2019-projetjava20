@@ -4,6 +4,7 @@
 package controller;
 
 import model.Partie;
+import view.UnoVue;
 
 /**
  * @author Florence
@@ -12,18 +13,15 @@ import model.Partie;
 public class UnoController {
 	
 	Partie model;
+	UnoVue view;
 	//Console vue;
 	
 	public UnoController(Partie model){
 		this.model = model;
 	}
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+	public void addVue(UnoVue view){
+		this.view = view;
 	}
 
 }

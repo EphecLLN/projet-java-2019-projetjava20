@@ -1,11 +1,11 @@
-/**
- * 
- */
 package view;
 
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Scanner;
 
+import controller.UnoController;
 import model.Carte;
 import model.Joueur;
 import model.Partie;
@@ -16,19 +16,26 @@ import model.Talon;
  * @author Florence Salpietro & Amélie Courtin
  *
  */
-public class Console {
+public class UnoVueConsole extends UnoVue implements Observer{
 	
 	
-	//protected static Pioche pioche;
-	static Scanner sc = new Scanner(System.in);
+	protected Scanner sc;
 	private static ArrayList<Carte> lisCart = new ArrayList<Carte>();
 
+	
+	UnoVueConsole(Partie model, UnoController controller) {
+		super(model, controller);
+		sc = new Scanner(System.in);
+		// TODO Auto-generated constructor stub
+	}
+
+	//protected static Pioche pioche;
 
 
 	/**
 	 * 
 	 */
-	public static void menu(){
+	public void menu(){
 		System.out.println("Bienvenue dans UNO 2.0");
 		System.out.println("[1] Démarrer une partie");
 		System.out.println("[2] Quitter ");
@@ -54,7 +61,7 @@ public class Console {
 	/**
 	 * 
 	 */
-	public static void jeu(){
+	public void jeu(){
 		
 		System.out.println("Combien de joueurs participeront à cette partie ? ");
 		int nb = Integer.parseInt(sc.nextLine());
@@ -73,7 +80,7 @@ public class Console {
 
 		}
 		
-		ArrayList<Joueur> lj = new ArrayList();
+		ArrayList<Joueur> lj = new ArrayList<Joueur>();
 		lj = Joueur.getListJoueurs();
 		
 		Partie partie = new Partie(lj, null, 0, null);
@@ -109,7 +116,7 @@ public class Console {
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) {
+	public void main(String[] args) {
 		
 
 
@@ -118,6 +125,12 @@ public class Console {
 	
 	
 			// pioche vide
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 

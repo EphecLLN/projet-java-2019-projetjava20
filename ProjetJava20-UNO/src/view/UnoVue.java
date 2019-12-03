@@ -13,5 +13,6 @@ public abstract class UnoVue implements Observer {
 	UnoVue(Partie model, UnoController controller){
 		this.model = model;
 		this.controller= controller;
+		model.addObserver(this);
 	}
 }
