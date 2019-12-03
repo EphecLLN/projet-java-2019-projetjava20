@@ -93,10 +93,13 @@ public class Partie extends Observable{
 			 
 			 score += scoreI;
 		 }
+		 
+		 this.setChanged();
+		 this.notifyObservers();
 		
 		 return score;
-		 setChanged();
-		 notifyObservers();
+		
+		
 		 
 	 }
 
@@ -116,6 +119,8 @@ public class Partie extends Observable{
 				 gagnant =j;
 			 };
 		  }	
+		 this.setChanged();
+		 this.notifyObservers();
 		 return gagnant;
 	}
 	 
@@ -127,6 +132,9 @@ public class Partie extends Observable{
 			 if(listeJoueurs.get(i).getScore()>500){
 				 vainqueur = listeJoueurs.get(i);
 			 }
+			 
+			 this.setChanged();
+			 this.notifyObservers();
 		 }
 	 }
 
@@ -147,6 +155,8 @@ public class Partie extends Observable{
 	 */
 	public void setJoueur(Joueur joueur) {
 		this.joueur = joueur;
+		 this.setChanged();
+		 this.notifyObservers();
 	}
 
 
@@ -163,6 +173,8 @@ public class Partie extends Observable{
 	 */
 	public void setJoueurEnCours(Joueur joueurEnCours) {
 		this.joueurEnCours = joueurEnCours;
+		 this.setChanged();
+		 this.notifyObservers();
 	}
 
 
@@ -179,6 +191,8 @@ public class Partie extends Observable{
 	 */
 	public void setSens(int sens) {
 		this.sens = sens;
+		 this.setChanged();
+		 this.notifyObservers();
 	}
 
 
@@ -195,6 +209,8 @@ public class Partie extends Observable{
 	 */
 	public void setNbJoueur(int nbJoueur) {
 		this.nbJoueur = nbJoueur;
+		 this.setChanged();
+		 this.notifyObservers();
 	}
 
 
@@ -211,6 +227,8 @@ public class Partie extends Observable{
 	 */
 	public void setGagnant(Joueur gagnant) {
 		this.gagnant = gagnant;
+		 this.setChanged();
+		 this.notifyObservers();
 	}
 
 
@@ -227,6 +245,8 @@ public class Partie extends Observable{
 	 */
 	public void setScore(int score) {
 		this.score = score;
+		 this.setChanged();
+		 this.notifyObservers();
 	}
 
 
@@ -243,6 +263,8 @@ public class Partie extends Observable{
 	 */
 	public void setListeJoueurs(ArrayList<Joueur> listeJoueurs) {
 		this.listeJoueurs = listeJoueurs;
+		 this.setChanged();
+		 this.notifyObservers();
 	}
 
 
@@ -259,6 +281,8 @@ public class Partie extends Observable{
 	 */
 	public void setVainqueur(Joueur vainqueur) {
 		this.vainqueur = vainqueur;
+		 this.setChanged();
+		 this.notifyObservers();
 	}
 
 }
