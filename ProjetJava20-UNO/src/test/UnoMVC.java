@@ -35,7 +35,6 @@ public class UnoMVC {
 
 			new UnoMVC();
 		
-		
 	}
 
 }

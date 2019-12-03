@@ -14,8 +14,7 @@ public class UnoVueGUI extends UnoVue implements Observer{
 
 	@Override
 	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
-		
+			//System.out.println("GUI");		
 	}
 
 }

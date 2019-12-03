@@ -19,14 +19,14 @@ import model.Talon;
 public class UnoVueConsole extends UnoVue implements Observer{
 	
 	
-	protected Scanner sc;
+	protected static Scanner sc;
 	private static ArrayList<Carte> lisCart = new ArrayList<Carte>();
 
 	
 	public UnoVueConsole(Partie model, UnoController controller) {
 		super(model, controller);
-		sc = new Scanner(System.in);
-		// TODO Auto-generated constructor stub
+		update(null, null);
+
 	}
 
 	//protected static Pioche pioche;
@@ -35,7 +35,9 @@ public class UnoVueConsole extends UnoVue implements Observer{
 	/**
 	 * 
 	 */
-	public void menu(){
+	public static void menu(){
+		sc = new Scanner(System.in);
+
 		System.out.println("Bienvenue dans UNO 2.0");
 		System.out.println("[1] Démarrer une partie");
 		System.out.println("[2] Quitter ");
@@ -61,7 +63,7 @@ public class UnoVueConsole extends UnoVue implements Observer{
 	/**
 	 * 
 	 */
-	public void jeu(){
+	public static void jeu(){
 		
 		System.out.println("Combien de joueurs participeront à cette partie ? ");
 		int nb = Integer.parseInt(sc.nextLine());
@@ -113,24 +115,11 @@ public class UnoVueConsole extends UnoVue implements Observer{
 		}
 	}
 	
-	/**
-	 * @param args
-	 */
-	public void main(String[] args) {
-		
-
-
-	
-	menu();
-	
-	
-			// pioche vide
-	}
 
 	@Override
 	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
-		
+		//System.out.println(model);
+		menu();
 	}
 	
 
