@@ -55,6 +55,8 @@ public class UnoController {
 	public void initJeu(ArrayList<Joueur> lj){
 		Partie partie = new Partie(lj, null, 0, null); // new dans new ???
 		
+		System.out.println("partie getlist"+model.getListeJoueurs());
+		
 		creaCartes();
 				
 		Pioche pioche = new Pioche(getLisCart());
@@ -68,6 +70,10 @@ public class UnoController {
 		partie.setJoueurEnCours(lj.get(0));
 		
 		partie.determinerJoueur();
+		
+		System.out.println("list lj"+lj);
+		System.out.println("model getlist/partie"+model.getListeJoueurs());//prob null
+
 		
 	}
 	
@@ -86,6 +92,13 @@ public class UnoController {
 	 */
 	public void setLisCart(ArrayList<Carte> lisCart) {
 		this.lisCart = lisCart;
+	}
+
+	/**
+	 * @return the joueurEnCours
+	 */
+	public Joueur getJoueurEnCours() {
+		return model.getJoueurEnCours();
 	}
 	
 

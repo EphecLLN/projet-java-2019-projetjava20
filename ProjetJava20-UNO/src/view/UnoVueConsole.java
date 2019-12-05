@@ -81,7 +81,17 @@ public class UnoVueConsole extends UnoVue implements Observer{
 		
 		controller.initJeu(lj);
 		
+		manche();
 
+	}
+	
+	/**
+	 * Manche 
+	 */
+	public void manche(){
+		System.out.println(controller.getJoueurEnCours());
+		affiche("C'est à toi de jouer, voici tes cartes : ");
+		
 	}
 
 

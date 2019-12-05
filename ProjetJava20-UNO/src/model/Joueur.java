@@ -76,6 +76,15 @@ public class Joueur {
 		return false;
 	}
 	
+	public String toString(){
+		for (int i=0; i<listCartesJ.size();i++){
+			System.out.println(listCartesJ.get(i));
+		}
+		
+		return nom;
+		
+	}
+	
 /*---------------------------GETTERS & SETTERS---------------------------*/
 	/**
 	 * @return the nom

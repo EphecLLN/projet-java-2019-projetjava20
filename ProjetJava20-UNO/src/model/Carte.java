@@ -29,6 +29,11 @@ public class Carte {
 		//listCartes.add(this);
 		
 	}
+	
+	
+	public String toSring(){
+		return "couleur : "+this.couleur+" "+valeur ;
+	}
 
 	/**
 	 * @return the categorie
