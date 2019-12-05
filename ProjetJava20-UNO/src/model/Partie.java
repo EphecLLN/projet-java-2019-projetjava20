@@ -9,14 +9,14 @@ import java.util.Observable;
  */
 public class Partie extends Observable{
 	
-	public Joueur joueur;
-	public  Joueur joueurEnCours ;
-	public int sens;
-	public int nbJoueur;
-	public Joueur gagnant; //joueur qui gagne une manche
+	private Joueur joueur;
+	private  Joueur joueurEnCours ;
+	private int sens;
+	private int nbJoueur;
+	protected Joueur gagnant; //joueur qui gagne une manche
 	protected int score;
-	public ArrayList <Joueur> listeJoueurs;
-	public Joueur vainqueur; //joueur qui gagne la partie partie
+	private ArrayList <Joueur> listeJoueurs;
+	protected Joueur vainqueur; //joueur qui gagne la partie partie
 
 	/**
 	 * Constructeur
@@ -69,37 +69,10 @@ public class Partie extends Observable{
 		 }
 		 
 		return joueurEnCours;
-		
-		 
+			 
 	 }
 	 
-	/**
-	 *  
-	 * @param gagnant
-	 * @return
-	 */
-	public int calculerScore (Joueur gagnant) {
-		 
-		 score = 0;
-		
-		 for(int i=0; i<listeJoueurs.size(); i++) {
-			 
-			 int scoreI = 0;
-			 Joueur j = listeJoueurs.get(i);
-			 ArrayList<Carte> cartes = j.getListCartesJ();
-			 
-			 for( int x=0;x<cartes.size();x++){
-				scoreI += cartes.get(x).getValeur();			 
-			 }
-			 
-			 score += scoreI;
-		 }
-		
-		 this.setChanged();
-		 this.notifyObservers();
-		 return score;
-		 
-	 }
+
 
 	 /**
 	 * @return 
@@ -123,20 +96,50 @@ public class Partie extends Observable{
 	}
 	 
 	 /**
+	 * @return 
 	  * 
 	  */
-	 public void determinerVainqueur() {
+	 public boolean determinerVainqueur() {
 		 for (int i=0; i<listeJoueurs.size(); i++) { 
 			 if(listeJoueurs.get(i).getScore()>500){
-				 vainqueur = listeJoueurs.get(i);
+				 //vainqueur = listeJoueurs.get(i);
+				 setVainqueur(listeJoueurs.get(i));
 				 this.setChanged();
 				 this.notifyObservers();
-			 }
-			
+				 return true;
+			 }			
 			 
 		 }
+		return false;
 	 }
 
+		/**
+		 *  
+		 * @param gagnant
+		 * @return
+		 */
+		public int calculerScore (Joueur gagnant) {
+			 
+			 int score = 0;
+			
+			 for(int i=0; i<getListeJoueurs().size(); i++) {
+				 
+				 int scoreI = 0;
+				 Joueur j = getListeJoueurs().get(i);
+				 ArrayList<Carte> cartes = j.getListCartesJ();
+				 
+				 for( int x=0;x<cartes.size();x++){
+					scoreI += cartes.get(x).getValeur();			 
+				 }
+				 
+				 score += scoreI;
+			 }
+			
+			 setChanged();
+			 notifyObservers();
+			 return score;
+			 
+		 }
 
 /*---------------------------GETTERS & SETTERS---------------------------*/
 

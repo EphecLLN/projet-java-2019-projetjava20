@@ -19,28 +19,23 @@ import model.Talon;
 public class UnoVueConsole extends UnoVue implements Observer{
 	
 	
-	protected static Scanner sc;
-	private static ArrayList<Carte> lisCart = new ArrayList<Carte>();
+	protected Scanner sc;
 
 	
 	public UnoVueConsole(Partie model, UnoController controller) {
 		super(model, controller);
 		update(null, null);
-
 	}
-
-	//protected static Pioche pioche;
-
 
 	/**
 	 * 
 	 */
-	public static void menu(){
+	public void menu(){
 		sc = new Scanner(System.in);
-
-		System.out.println("Bienvenue dans UNO 2.0");
-		System.out.println("[1] Démarrer une partie");
-		System.out.println("[2] Quitter ");
+		
+		affiche("Bienvenue dans UNO 2.0");
+		affiche("[1] Démarrer une partie");
+		affiche("[2] Quitter ");
 		
 		//Scanner scanner = new Scanner (System.in);
 		int  selection = Integer.parseInt(sc.nextLine());
@@ -50,11 +45,11 @@ public class UnoVueConsole extends UnoVue implements Observer{
 				jeu();
 				
 			case 2:
-				System.out.println("Exit");
+				affiche("Exit");
 				System.exit(0);
 				
 			 default:
-		    	 System.out.println("La selection n'est pas valide");
+		    	 affiche("La selection n'est pas valide");
 		    	 menu();
 			
 		}
@@ -63,15 +58,15 @@ public class UnoVueConsole extends UnoVue implements Observer{
 	/**
 	 * 
 	 */
-	public static void jeu(){
+	public void jeu(){
 		
-		System.out.println("Combien de joueurs participeront à cette partie ? ");
+		affiche("Combien de joueurs participeront à cette partie ? ");
 		int nb = Integer.parseInt(sc.nextLine());
 		Object[] tab = new Object[nb];
 		String nom = null;
 		
 		for (int i=1; i<=nb; i++){
-				System.out.println("Indiquer le nom du joueur"+ i);
+				affiche("Indiquer le nom du joueur"+ i);
 				nom = sc.nextLine();
 			tab[i-1] = nom;
 		}
@@ -82,44 +77,25 @@ public class UnoVueConsole extends UnoVue implements Observer{
 
 		}
 		
-		ArrayList<Joueur> lj = new ArrayList<Joueur>();
-		lj = Joueur.getListJoueurs();
+		ArrayList<Joueur> lj = new ArrayList<Joueur>(Joueur.getListJoueurs()); 
 		
-		Partie partie = new Partie(lj, null, 0, null);
-			
-		creaCartes();
-				
-		Pioche pioche = new Pioche(lisCart);
-				
-		pioche.distribuer();
-		
-		Talon talon = new Talon(new ArrayList<Carte>());//creer avec la derniere carte de la pioche
-		
-		talon.getListCartesT().add(pioche.retirer()); // ajoute la derniere carte de la pioche au talon
-		
-		System.out.println(partie.determinerJoueur());
+		controller.initJeu(lj);
 		
 
 	}
 
-	public static void creaCartes(){
-		
-		String tab [] = {"jaune", "rouge", "bleu","vert"};
-		int num []  = {0,1,2,3,4,5,6,7,8,9};
-		
-		for(int i=0; i<tab.length; i++){
-			for(int j=0; j<num.length; j++){
-				lisCart.add(new Carte( "chiffre",tab[i], num[j]));
-				
-			}
-		}
-	}
+
 	
 
 	@Override
 	public void update(Observable o, Object arg) {
 		//System.out.println(model);
 		menu();
+	}
+
+	@Override
+	public void affiche(String string) {
+		System.out.println(string);		
 	}
 	
 

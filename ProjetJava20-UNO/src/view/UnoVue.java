@@ -15,4 +15,6 @@ public abstract class UnoVue implements Observer {
 		this.controller= controller;
 		model.addObserver(this);
 	}
+	
+	public abstract void affiche(String string);
 }
