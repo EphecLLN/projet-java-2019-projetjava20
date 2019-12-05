@@ -264,9 +264,10 @@ public class Partie extends Observable{
 	 * @param listeJoueurs the listeJoueurs to set
 	 */
 	public void setListeJoueurs(ArrayList<Joueur> listeJoueurs) {
+		System.out.println("testlist");
 		this.listeJoueurs = listeJoueurs;
-		 this.setChanged();
-		 this.notifyObservers();
+		 //this.setChanged();
+		 //this.notifyObservers();
 	}
 
 

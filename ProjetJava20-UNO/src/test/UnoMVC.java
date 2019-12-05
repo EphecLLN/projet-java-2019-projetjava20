@@ -3,7 +3,10 @@
  */
 package test;
 
+import java.util.ArrayList;
+
 import controller.UnoController;
+import model.Joueur;
 import model.Partie;
 import view.UnoVueConsole;
 import view.UnoVueGUI;
@@ -14,9 +17,11 @@ import view.UnoVueGUI;
  */
 public class UnoMVC {
 	
+	private ArrayList<Joueur> listj = new ArrayList<Joueur>();
+	
 	public UnoMVC(){
-		Partie model = new Partie(null, null, 0, null);
-		
+		Partie model = new Partie(listj, null, 0, null);
+				
 		UnoController controlleur = new UnoController(model);
 		
 		UnoVueConsole vueConsole = new UnoVueConsole(model, controlleur);

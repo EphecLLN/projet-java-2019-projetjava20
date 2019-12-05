@@ -53,9 +53,15 @@ public class UnoController {
 	 * @param lj
 	 */
 	public void initJeu(ArrayList<Joueur> lj){
-		Partie partie = new Partie(lj, null, 0, null); // new dans new ???
+		System.out.println(model.getListeJoueurs());
+
+		//Partie partie = new Partie(lj, null, 0, null); // new dans new ???
 		
-		System.out.println("partie getlist"+model.getListeJoueurs());
+
+		model.setListeJoueurs(lj);
+		
+		
+		System.out.println("test3");
 		
 		creaCartes();
 				
@@ -67,9 +73,9 @@ public class UnoController {
 		
 		talon.getListCartesT().add(pioche.retirer()); // ajoute la derniere carte de la pioche au talon
 		
-		partie.setJoueurEnCours(lj.get(0));
+		model.setJoueurEnCours(lj.get(0));
 		
-		partie.determinerJoueur();
+		model.determinerJoueur();
 		
 		System.out.println("list lj"+lj);
 		System.out.println("model getlist/partie"+model.getListeJoueurs());//prob null

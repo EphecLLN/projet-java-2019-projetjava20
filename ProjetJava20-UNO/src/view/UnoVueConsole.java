@@ -74,11 +74,10 @@ public class UnoVueConsole extends UnoVue implements Observer{
 		for(int j =0; j<tab.length; j++){
 			String name = (String) tab[j];
 			tab[j] = new Joueur(name,new ArrayList<Carte>(),0);
-
-		}
+System.out.println("test 1");		}
 		
 		ArrayList<Joueur> lj = new ArrayList<Joueur>(Joueur.getListJoueurs()); 
-		
+	System.out.println("test 2");	
 		controller.initJeu(lj);
 		
 		manche();
