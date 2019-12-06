@@ -22,7 +22,7 @@ public class Carte {
 	 * @param couleur
 	 * @param valeur
 	 */
-	public  Carte( String categorie, String couleur, int valeur){
+	public  Carte(String categorie, String couleur, int valeur){
 		this.categorie = categorie;
 		this.couleur = couleur;
 		this.valeur = valeur;

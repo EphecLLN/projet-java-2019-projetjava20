@@ -18,6 +18,7 @@ public class Pioche {
 	 */
 	public Pioche(ArrayList<Carte> listCartesP){
 		this.listCartesP = listCartesP;
+
 	}
 
 	/**
@@ -38,10 +39,10 @@ public class Pioche {
 	}
 	
 	/**
-	 * Methode permettant de distribuer 7 cartes à chaque joueur
+	 * Methode permettant de distribuer 7 cartes à chaque joueur en mélangeant d'abord toutes les cartes
 	 */
 	public void distribuer(){
-		
+
 		melanger();
 		
 		for(int i=0; i<Joueur.getListJoueurs().size() ; i++){
@@ -50,11 +51,8 @@ public class Pioche {
 				listCartesP.remove(j);
 				}
 		}
-		
+
 	}
-	
-	
-	
 	
 
 	/**

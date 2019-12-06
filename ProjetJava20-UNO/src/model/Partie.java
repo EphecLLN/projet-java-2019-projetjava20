@@ -15,8 +15,9 @@ public class Partie extends Observable{
 	private int nbJoueur;
 	protected Joueur gagnant; //joueur qui gagne une manche
 	protected int score;
-	private ArrayList <Joueur> listeJoueurs;
+	private ArrayList <Joueur> listJoueurs;
 	protected Joueur vainqueur; //joueur qui gagne la partie partie
+	private ArrayList<Carte> listCartes = new ArrayList<Carte>();
 
 	/**
 	 * Constructeur
@@ -25,8 +26,8 @@ public class Partie extends Observable{
 	 * @param sens
 	 * @param gagnant
 	 */
-	public Partie(ArrayList<Joueur> listeJoueurs, Joueur joueurEnCours, int sens, Joueur gagnant) {
-		this.listeJoueurs = listeJoueurs;
+	public Partie(ArrayList<Joueur> listJoueurs, Joueur joueurEnCours, int sens, Joueur gagnant) {
+		this.listJoueurs = listJoueurs;
 		this.joueurEnCours = joueurEnCours;
 		this.sens = sens;
 		this.gagnant = gagnant;
@@ -43,26 +44,26 @@ public class Partie extends Observable{
 	 */
 	public Joueur determinerJoueur () {
 		 if (sens==0){
-   		   for (int i=0; i<listeJoueurs.size(); i++) {
-			  if (listeJoueurs.get(i).equals(joueurEnCours)) {
-				if(i==listeJoueurs.size()-1){
-					joueurEnCours=listeJoueurs.get(0);					
+   		   for (int i=0; i<listJoueurs.size(); i++) {
+			  if (listJoueurs.get(i).equals(joueurEnCours)) {
+				if(i==listJoueurs.size()-1){
+					joueurEnCours=listJoueurs.get(0);					
 				}
 				else{
-					joueurEnCours=listeJoueurs.get(i+1);
+					joueurEnCours=listJoueurs.get(i+1);
 				}
 			  }
 		 	} 
 		 }
 		 
 		 if(sens==1) {
-			 for (int i=0; i<listeJoueurs.size(); i++) {
-					if (listeJoueurs.get(i).equals(joueurEnCours)) {
+			 for (int i=0; i<listJoueurs.size(); i++) {
+					if (listJoueurs.get(i).equals(joueurEnCours)) {
 						if(i==0){							
-							joueurEnCours=listeJoueurs.get(listeJoueurs.size()-1);							
+							joueurEnCours=listJoueurs.get(listJoueurs.size()-1);							
 						}
 						else {
-							joueurEnCours=listeJoueurs.get(i-1);
+							joueurEnCours=listJoueurs.get(i-1);
 						}
 					}
 			  } 
@@ -81,9 +82,9 @@ public class Partie extends Observable{
 	 public Joueur determinerGagnant() {
 		//parcourir la liste de carte de chaque joueur, verifier si elle est vide ou non, retourner le joueur dont la liste est vide et alors il est gagnant
 		//boucle for 
-		 for (int i=0; i<listeJoueurs.size(); i++) {
+		 for (int i=0; i<listJoueurs.size(); i++) {
 			 	
-			 Joueur j = listeJoueurs.get(i);
+			 Joueur j = listJoueurs.get(i);
 			 ArrayList<Carte> cartes = j.getListCartesJ();
 			 
 			 if (cartes.isEmpty()) {
@@ -100,10 +101,10 @@ public class Partie extends Observable{
 	  * 
 	  */
 	 public boolean determinerVainqueur() {
-		 for (int i=0; i<listeJoueurs.size(); i++) { 
-			 if(listeJoueurs.get(i).getScore()>500){
+		 for (int i=0; i<listJoueurs.size(); i++) { 
+			 if(listJoueurs.get(i).getScore()>500){
 				 //vainqueur = listeJoueurs.get(i);
-				 setVainqueur(listeJoueurs.get(i));
+				 setVainqueur(listJoueurs.get(i));
 				 this.setChanged();
 				 this.notifyObservers();
 				 return true;
@@ -122,10 +123,10 @@ public class Partie extends Observable{
 			 
 			 int score = 0;
 			
-			 for(int i=0; i<getListeJoueurs().size(); i++) {
+			 for(int i=0; i<getListJoueurs().size(); i++) {
 				 
 				 int scoreI = 0;
-				 Joueur j = getListeJoueurs().get(i);
+				 Joueur j = getListJoueurs().get(i);
 				 ArrayList<Carte> cartes = j.getListCartesJ();
 				 
 				 for( int x=0;x<cartes.size();x++){
@@ -140,7 +141,53 @@ public class Partie extends Observable{
 			 return score;
 			 
 		 }
+		
+		/**
+		 * Creer toutes les cartes du UNO
+		 * @return une liste de toutes les cartes du jeu
+		 */
+		public ArrayList<Carte> creaCartes(){
+			System.out.println("test3");
+			
+			String tab [] = {"jaune", "rouge", "bleu","vert"};
+			int num []  = {0,1,2,3,4,5,6,7,8,9};
 
+			for(int i=0; i<tab.length; i++){
+				for(int j=0; j<num.length; j++){
+					listCartes.add(new Carte( "chiffre",tab[i], num[j]));
+					
+				}
+			}
+
+			return listCartes;
+		}
+
+		
+		
+		/**
+		 * Creer le jeu avec une liste de joueurs en param
+		 * @param lj
+		 */
+		public void initJeu(ArrayList<Joueur> lj){			
+
+			setListJoueurs(lj);
+			
+			System.out.println(getListJoueurs());
+
+			Pioche pioche = new Pioche(creaCartes());
+			pioche.distribuer();			
+
+			Talon talon = new Talon(new ArrayList<Carte>());//creer avec la derniere carte de la pioche
+			talon.getListCartesT().add(pioche.retirer()); // ajoute la derniere carte de la pioche au talon
+			
+			setJoueurEnCours(lj.get(0));
+
+			determinerJoueur();
+
+			System.out.println("model getlist/partie"+getListJoueurs());//prob null
+
+			
+		}
 /*---------------------------GETTERS & SETTERS---------------------------*/
 
 	 
@@ -175,8 +222,8 @@ public class Partie extends Observable{
 	 */
 	public void setJoueurEnCours(Joueur joueurEnCours) {
 		this.joueurEnCours = joueurEnCours;
-		 this.setChanged();
-		 this.notifyObservers();
+		this.setChanged();
+		this.notifyObservers();
 	}
 
 
@@ -193,8 +240,8 @@ public class Partie extends Observable{
 	 */
 	public void setSens(int sens) {
 		this.sens = sens;
-		 this.setChanged();
-		 this.notifyObservers();
+		this.setChanged();
+		this.notifyObservers();
 	}
 
 
@@ -211,8 +258,8 @@ public class Partie extends Observable{
 	 */
 	public void setNbJoueur(int nbJoueur) {
 		this.nbJoueur = nbJoueur;
-		 this.setChanged();
-		 this.notifyObservers();
+		this.setChanged();
+		this.notifyObservers();
 	}
 
 
@@ -229,8 +276,8 @@ public class Partie extends Observable{
 	 */
 	public void setGagnant(Joueur gagnant) {
 		this.gagnant = gagnant;
-		 this.setChanged();
-		 this.notifyObservers();
+		this.setChanged();
+		this.notifyObservers();
 	}
 
 
@@ -247,27 +294,31 @@ public class Partie extends Observable{
 	 */
 	public void setScore(int score) {
 		this.score = score;
-		 this.setChanged();
-		 this.notifyObservers();
+		this.setChanged();
+		this.notifyObservers();
 	}
 
 
 	/**
 	 * @return the listeJoueurs
 	 */
-	public ArrayList<Joueur> getListeJoueurs() {
-		return listeJoueurs;
+	public ArrayList<Joueur> getListJoueurs() {
+		return listJoueurs;
 	}
 
 
 	/**
 	 * @param listeJoueurs the listeJoueurs to set
 	 */
-	public void setListeJoueurs(ArrayList<Joueur> listeJoueurs) {
-		System.out.println("testlist");
-		this.listeJoueurs = listeJoueurs;
-		 //this.setChanged();
-		 //this.notifyObservers();
+	public void setListJoueurs(ArrayList<Joueur> listJoueurs) {
+		
+		this.listJoueurs = listJoueurs;
+				
+		// this.setChanged();
+		//this.notifyObservers();
+		
+		// ne change jamais au cours d'une partie...
+		
 	}
 
 
@@ -284,8 +335,8 @@ public class Partie extends Observable{
 	 */
 	public void setVainqueur(Joueur vainqueur) {
 		this.vainqueur = vainqueur;
-		 this.setChanged();
-		 this.notifyObservers();
+		this.setChanged();
+		this.notifyObservers();
 	}
 
 }

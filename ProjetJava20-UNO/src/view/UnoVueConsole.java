@@ -25,6 +25,7 @@ public class UnoVueConsole extends UnoVue implements Observer{
 	public UnoVueConsole(Partie model, UnoController controller) {
 		super(model, controller);
 		update(null, null);
+		menu();
 	}
 
 	/**
@@ -37,7 +38,6 @@ public class UnoVueConsole extends UnoVue implements Observer{
 		affiche("[1] Démarrer une partie");
 		affiche("[2] Quitter ");
 		
-		//Scanner scanner = new Scanner (System.in);
 		int  selection = Integer.parseInt(sc.nextLine());
 		
 		switch (selection){
@@ -68,19 +68,22 @@ public class UnoVueConsole extends UnoVue implements Observer{
 		for (int i=1; i<=nb; i++){
 				affiche("Indiquer le nom du joueur"+ i);
 				nom = sc.nextLine();
-			tab[i-1] = nom;
+				tab[i-1] = nom;
 		}
 		
 		for(int j =0; j<tab.length; j++){
 			String name = (String) tab[j];
 			tab[j] = new Joueur(name,new ArrayList<Carte>(),0);
-System.out.println("test 1");		}
+		}
 		
 		ArrayList<Joueur> lj = new ArrayList<Joueur>(Joueur.getListJoueurs()); 
-	System.out.println("test 2");	
+
 		controller.initJeu(lj);
 		
 		manche();
+		
+		affiche("Exit");
+		System.exit(0);
 
 	}
 	
@@ -88,8 +91,9 @@ System.out.println("test 1");		}
 	 * Manche 
 	 */
 	public void manche(){
-		System.out.println(controller.getJoueurEnCours());
+		System.out.println(model.getJoueurEnCours());
 		affiche("C'est à toi de jouer, voici tes cartes : ");
+		System.out.println(model.getJoueurEnCours().getListCartesJ().get(0));
 		
 	}
 
@@ -99,7 +103,8 @@ System.out.println("test 1");		}
 	@Override
 	public void update(Observable o, Object arg) {
 		//System.out.println(model);
-		menu();
+		//menu();
+		model.getJoueurEnCours();
 	}
 
 	@Override

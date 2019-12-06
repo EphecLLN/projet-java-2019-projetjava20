@@ -77,11 +77,8 @@ public class Joueur {
 	}
 	
 	public String toString(){
-		for (int i=0; i<listCartesJ.size();i++){
-			System.out.println(listCartesJ.get(i));
-		}
-		
-		return nom;
+
+		return getNom();
 		
 	}
 	
