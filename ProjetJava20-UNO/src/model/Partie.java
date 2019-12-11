@@ -146,9 +146,7 @@ public class Partie extends Observable{
 		 * Creer toutes les cartes du UNO
 		 * @return une liste de toutes les cartes du jeu
 		 */
-		public ArrayList<Carte> creaCartes(){
-			System.out.println("test3");
-			
+		public ArrayList<Carte> creaCartes(){			
 			String tab [] = {"jaune", "rouge", "bleu","vert"};
 			int num []  = {0,1,2,3,4,5,6,7,8,9};
 
@@ -184,7 +182,7 @@ public class Partie extends Observable{
 
 			determinerJoueur();
 
-			System.out.println("model getlist/partie"+getListJoueurs());//prob null
+			//System.out.println("model getlist/partie"+getListJoueurs());//prob null
 
 			
 		}
