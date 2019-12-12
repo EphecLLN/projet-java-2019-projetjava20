@@ -30,12 +30,14 @@ public class Talon {
 			if (carteAJouer.getValeur() == derniereCarte.getValeur()){
 				return true;
 			}				
-		}		
+		}	
+		
 		// Carte action à ajouter
 		
 		return false;
 	}
 
+	
 	/**
 	 * Methode permettant de retourner la ldernière carte du talon
 	 */

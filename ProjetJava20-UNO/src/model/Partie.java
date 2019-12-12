@@ -19,6 +19,7 @@ public class Partie extends Observable{
 	protected Joueur vainqueur; //joueur qui gagne la partie partie
 	private ArrayList<Carte> listCartes = new ArrayList<Carte>();
 
+	
 	/**
 	 * Constructeur
 	 * @param listeJoueurs
