@@ -9,9 +9,13 @@ package model;
  */
 public class CarteInterdit extends CarteAction{
 
-	public CarteInterdit(String categorie, String couleur, int valeur) {
-		super(categorie, couleur, valeur);
+	public CarteInterdit(String categorie, String couleur, int valeur, String codeString) {
+		super(categorie, couleur, valeur, codeString);
 		// TODO Auto-generated constructor stub
+	}
+	
+	public void Action(Partie partie){
+		partie.setJoueurEnCours(partie.getJoueurSuivant());
 	}
 
 }

@@ -9,8 +9,8 @@ package model;
  */
 public class CarteJoker extends CarteAction{
 
-	public CarteJoker(String categorie, String couleur, int valeur) {
-		super(categorie, couleur, valeur);
+	public CarteJoker(String categorie, String couleur, int valeur, String codeString) {
+		super(categorie, couleur, valeur, codeString);
 		// TODO Auto-generated constructor stub
 	}
 

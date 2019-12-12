@@ -91,9 +91,24 @@ public class UnoVueConsole extends UnoVue implements Observer{
 	 * Manche 
 	 */
 	public void manche(){
+		affiche("Talon : "+model.getTalon().getDerniere().toSring());
+
 		System.out.println(model.getJoueurEnCours());
 		affiche("C'est à toi de jouer, voici tes cartes : ");
-		System.out.println(model.getJoueurEnCours().getListCartesJ().get(0));
+		for(int i=0; i<model.getJoueurEnCours().getListCartesJ().size() ; i++){
+			
+			System.out.println(model.getJoueurEnCours().getListCartesJ().get(i).toSring());
+		}
+		
+		affiche("Talon : "+model.getTalon().getDerniere().toSring());
+		
+		affiche("Joue une carte ( chiffre+Première lettre   ex: 5V)");
+		
+		String reponse = sc.nextLine();
+		
+		model.estOk(reponse);
+		
+
 		
 	}
 
@@ -105,6 +120,11 @@ public class UnoVueConsole extends UnoVue implements Observer{
 		//System.out.println(model);
 		//menu();
 		model.getJoueurEnCours();
+		//model.getJoueurEnCours().getListCartesJ();
+		model.getListJoueurs();
+		model.getPioche();
+		model.getTalon();
+		
 	}
 
 	@Override

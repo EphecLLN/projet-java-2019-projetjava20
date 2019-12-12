@@ -12,8 +12,9 @@ import java.util.ArrayList;
 public class Carte {
 	
 	private String categorie;
-	private String couleur;
+	protected String couleur;
 	private int valeur;
+	private String codeString;
 
 	protected ArrayList<Carte> listCartes = new ArrayList<Carte>();
 	/**
@@ -22,18 +23,38 @@ public class Carte {
 	 * @param couleur
 	 * @param valeur
 	 */
-	public  Carte(String categorie, String couleur, int valeur){
+	public  Carte(String categorie, String couleur, int valeur, String codeString){
 		this.categorie = categorie;
 		this.couleur = couleur;
 		this.valeur = valeur;
+		this.codeString = codeString;
 		//listCartes.add(this);
 		
 	}
 	
 	
 	public String toSring(){
-		return "couleur : "+this.couleur+" "+valeur ;
+		return this.codeString ;
 	}
+
+	
+	
+	
+	/**
+	 * @return the codeString
+	 */
+	public String getCodeString() {
+		return codeString;
+	}
+
+
+	/**
+	 * @param codeString the codeString to set
+	 */
+	public void setCodeString(String codeString) {
+		this.codeString = codeString;
+	}
+
 
 	/**
 	 * @return the categorie
