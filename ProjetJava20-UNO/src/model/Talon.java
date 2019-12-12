@@ -16,6 +16,7 @@ public class Talon {
 	public Talon(ArrayList<Carte> listCartesT){
 		this.listCartesT = listCartesT;
 	}
+<<<<<<< HEAD
 	
 	/**
 	 * Methode permettant de verifier si la carte peut etre jouer sur la derniere carte
@@ -37,6 +38,12 @@ public class Talon {
 		return false;
 	}
 
+=======
+
+	public String toString(){
+		return this.getDerniere().toString();
+	}
+>>>>>>> origin/master
 	
 	/**
 	 * Methode permettant de retourner la ldernière carte du talon

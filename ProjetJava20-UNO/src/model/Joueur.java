@@ -35,10 +35,10 @@ public class Joueur {
 	 */
 	public void insererCarte(Carte carte){
 		listCartesJ.add(carte);
-		
 	}
 	
 	/**
+	 * 
 	 * Methode permettant de retirer une carte de la main du joueur (retirer de listCartes)
 	 * @param carte
 	 */

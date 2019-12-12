@@ -32,10 +32,11 @@ public class Pioche {
 	/**
 	 * Methode permettant de retirer la derniere carte de la pioche 
 	 */
-	public Carte retirer(){
+	public void retirer(Joueur joueur){
 		Carte lastCart = listCartesP.get(0);
+		joueur.getListCartesJ().add(lastCart);
 		listCartesP.remove(0);
-		return lastCart;
+		//return lastCart;
 	}
 	
 	/**
@@ -54,6 +55,10 @@ public class Pioche {
 
 	}
 	
+	
+	public Carte getDerniereCarte(){
+		return getListCartesP().get(0);
+	}
 
 	/**
 	 * @return the listCartesP
