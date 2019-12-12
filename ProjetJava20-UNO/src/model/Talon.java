@@ -38,13 +38,11 @@ public class Talon {
 		return false;
 	}
 
-=======
 
 	public String toString(){
 		return this.getDerniere().toString();
 	}
->>>>>>> origin/master
-	
+
 	/**
 	 * Methode permettant de retourner la ldernière carte du talon
 	 */
