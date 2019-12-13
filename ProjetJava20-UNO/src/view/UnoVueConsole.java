@@ -118,6 +118,11 @@ public class UnoVueConsole extends UnoVue implements Observer{
 			System.out.println("test2");
 			manche();
 		}
+		else if (reponse.equals("passe")){
+			//d
+			model.determinerJoueur();
+			manche();
+		}
 		else {
 			for( int i =0; i<model.getListCartes().size();i++){
 				if(reponse == model.getListCartes().get(i).getCodeString()){
@@ -164,6 +169,11 @@ public class UnoVueConsole extends UnoVue implements Observer{
 			}
 		
 		}
+		
+	}
+	
+	
+	public void tourJoueur(){
 		
 	}
 

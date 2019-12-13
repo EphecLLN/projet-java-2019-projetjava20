@@ -213,9 +213,8 @@ public class Partie extends Observable{
 		 */
 		public boolean estOk(String codeCarte){
 			Carte derniereCarte = talon.getDerniere();
-			System.out.println("estOk");
 			for(int i=0; i<getJoueurEnCours().getListCartesJ().size();i++){
-				if(codeCarte == getJoueurEnCours().getListCartesJ().get(i).getCodeString()){
+				if(codeCarte.equals(getJoueurEnCours().getListCartesJ().get(i).getCodeString())){
 					carteAJouer = getJoueurEnCours().getListCartesJ().get(i); 
 					if( carteAJouer.getValeur()<10 && derniereCarte.getValeur()<10){
 						if (carteAJouer.getCouleur() == derniereCarte.getCouleur() ){
@@ -232,7 +231,7 @@ public class Partie extends Observable{
 				}
 			}		
 			// Carte action à ajouter
-			
+			System.out.println("estOk FALSE");
 			return false;
 		}
 		
@@ -247,17 +246,25 @@ public class Partie extends Observable{
 			System.out.println(getListJoueurs());
 
 			pioche = new Pioche(creaCartes());
-			pioche.distribuer();			
+			pioche.distribuer();
+			pioche.melanger();
 
 			talon = new Talon(new ArrayList<Carte>());//creer avec la derniere carte de la pioche
 			talon.getListCartesT().add(pioche.getDerniereCarte()); // ajoute la derniere carte de la pioche au talon
+			pioche.getListCartesP().remove(pioche.getDerniereCarte());
+			
+			while(talon.getDerniere().getCategorie().equals("action")){
+				talon.getListCartesT().add(pioche.getDerniereCarte()); // ajoute la derniere carte de la pioche au talon
+				pioche.getListCartesP().remove(pioche.getDerniereCarte());
+
+			}
+			
 			
 			setJoueurEnCours(lj.get(0));
 
 			determinerJoueur();
-
-
 			
+					
 		}
 /*---------------------------GETTERS & SETTERS---------------------------*/
 
