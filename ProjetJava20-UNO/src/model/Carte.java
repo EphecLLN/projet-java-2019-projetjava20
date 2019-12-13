@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * @author Florence Salpietro & Amélie Courtin
  *
  */
-public class Carte {
+public abstract class Carte{
 	
 	private String categorie;
 	protected String couleur;
@@ -36,6 +36,9 @@ public class Carte {
 	public String toSring(){
 		return this.codeString ;
 	}
+	
+	
+	public abstract void Action();
 
 	
 	

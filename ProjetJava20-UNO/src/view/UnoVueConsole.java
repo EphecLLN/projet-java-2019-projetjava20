@@ -121,7 +121,7 @@ public class UnoVueConsole extends UnoVue implements Observer{
 		else if (reponse.equals("passe")){
 			//d
 			model.determinerJoueur();
-			manche();
+
 		}
 		else {
 			for( int i =0; i<model.getListCartes().size();i++){
@@ -143,19 +143,19 @@ public class UnoVueConsole extends UnoVue implements Observer{
 				
 				switch (codeCarte){
 				case "P2":
-					
+					carte.Action();
 					break;
 				case "P4":
-					
+					carte.Action();
 					break;
 				case "I":
-					
+					carte.Action();
 					break;
 				case "C":
-					
+					carte.Action();
 					break;
 				case "S":
-					
+					carte.Action();
 					break;
 				default : 
 					affiche("Bien joué");

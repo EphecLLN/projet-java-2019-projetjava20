@@ -172,7 +172,7 @@ public class Partie extends Observable{
 			for(int i=0; i<tab.length; i++){
 				for(int j=0; j<num.length; j++){
 					String chaine = tabString[i]+num[j];
-					listCartes.add(new Carte( "chiffre",tab[i], num[j], chaine));
+					listCartes.add(new CarteChiffre( "chiffre",tab[i], num[j], chaine));
 					
 				}
 			}
@@ -226,7 +226,74 @@ public class Partie extends Observable{
 						
 						System.out.println("Vous ne pouvez pas jouer cette carte !");
 						return false;//message ex
-					}	
+					}
+					else{
+						System.out.println("Else");
+						String codeR;
+						String codeC;
+						if (codeCarte.length() == 2){
+							codeR = codeCarte.substring(0, 0);
+							System.out.println("ElseCodeR");
+
+						}
+						else{
+							codeR = codeCarte.substring(0, 1);
+							System.out.println("ElseCodeR2");
+
+						}
+						if(derniereCarte.getCodeString().length() == 2){
+							codeC = derniereCarte.getCodeString().substring(0, 0);
+							System.out.println("ElseCodeC1");
+
+						}
+						else{
+							codeC = derniereCarte.getCodeString().substring(0, 1);
+							System.out.println("ElseCodeC2");
+
+						}
+						switch (codeR){
+						case "P2":
+							System.out.println("switch");
+
+							if(codeC.equals("P2") || carteAJouer.getCouleur().equals(derniereCarte.getCouleur())){
+								carteAJouer.Action();
+								return true;
+							}
+							else{
+								System.out.println("Pas de Plus 2!");
+							}
+							break;
+						case "P4":
+							System.out.println("switch");
+
+							carteAJouer.Action();
+							return true;
+						case "I":
+							if(codeC.equals("I") || carteAJouer.getCouleur().equals(derniereCarte.getCouleur())){
+								carteAJouer.Action();
+								return true;
+							}
+							else{
+								System.out.println("Pas d' Interdit !");
+							}							
+							break;
+						case "C":
+							carteAJouer.Action();
+							return true;
+						case "S":
+							if(codeC.equals("S") || carteAJouer.getCouleur().equals(derniereCarte.getCouleur())){
+								carteAJouer.Action();
+								return true;
+							}
+							else{
+								System.out.println("Pas de changement de Sens !");
+							}
+							break;
+						default : 
+							affiche("Bien joué");
+							
+						}
+					}
 					
 				}
 			}		
@@ -235,6 +302,12 @@ public class Partie extends Observable{
 			return false;
 		}
 		
+		private void affiche(String string) {
+			// TODO Auto-generated method stub
+			
+		}
+
+
 		/**
 		 * Creer le jeu avec une liste de joueurs en param
 		 * @param lj
