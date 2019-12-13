@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 import controller.UnoController;
 import model.Carte;
+import model.CartePlus;
 import model.Joueur;
 import model.Partie;
 import model.Pioche;
@@ -20,6 +21,8 @@ public class UnoVueConsole extends UnoVue implements Observer{
 	
 	
 	protected Scanner sc;
+	private String codeCarte = "" ;
+
 
 	
 	public UnoVueConsole(Partie model, UnoController controller) {
@@ -91,6 +94,7 @@ public class UnoVueConsole extends UnoVue implements Observer{
 	 * Manche 
 	 */
 	public void manche(){
+
 		affiche("Talon : "+model.getTalon().getDerniere().toSring());
 
 		System.out.println(model.getJoueurEnCours());
@@ -102,18 +106,68 @@ public class UnoVueConsole extends UnoVue implements Observer{
 		
 		affiche("Talon : "+model.getTalon().getDerniere().toSring());
 		
-		affiche("Joue une carte ( chiffre+Première lettre   ex: 5V)");
+		affiche("Joue une carte pu écrit pioche pour une nouvelle carte (chiffre+Première lettre   ex: 5V)");
 		
 		String reponse = sc.nextLine();
 		
-		model.estOk(reponse);
+		Carte carte = null;
 		
-
+		if (reponse.equals("pioche")){
+			System.out.println("test1");
+			model.getPioche().retirer(model.getJoueurEnCours());
+			System.out.println("test2");
+			manche();
+		}
+		else {
+			for( int i =0; i<model.getListCartes().size();i++){
+				if(reponse == model.getListCartes().get(i).getCodeString()){
+					carte = model.getListCartes().get(i);
+				}			
+			}
+			
+			if (model.estOk(reponse)){
+				model.getJoueurEnCours().tirerCarte(carte);
+				model.getTalon().addCarte(carte);
+				if (reponse.length() == 2){
+					codeCarte = reponse.substring(0, 0);
+	
+				}
+				else{
+					codeCarte = reponse.substring(0, 1);
+				}
+				
+				switch (codeCarte){
+				case "P2":
+					
+					break;
+				case "P4":
+					
+					break;
+				case "I":
+					
+					break;
+				case "C":
+					
+					break;
+				case "S":
+					
+					break;
+				default : 
+					affiche("Bien joué");
+					
+				}
+	
+			}
+			
+			else{
+				affiche("Tu ne peux pas jouer cette carte");
+			}
+		
+		}
 		
 	}
 
 
-	
 
 	@Override
 	public void update(Observable o, Object arg) {

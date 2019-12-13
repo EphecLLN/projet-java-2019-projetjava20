@@ -213,7 +213,7 @@ public class Partie extends Observable{
 		 */
 		public boolean estOk(String codeCarte){
 			Carte derniereCarte = talon.getDerniere();
-			
+			System.out.println("estOk");
 			for(int i=0; i<getJoueurEnCours().getListCartesJ().size();i++){
 				if(codeCarte == getJoueurEnCours().getListCartesJ().get(i).getCodeString()){
 					carteAJouer = getJoueurEnCours().getListCartesJ().get(i); 
