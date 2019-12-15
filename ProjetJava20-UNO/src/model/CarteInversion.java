@@ -16,7 +16,7 @@ public class CarteInversion extends CarteAction {
 	}
 
 	
-	public void Action(Partie partie){
+	public void Action(Partie partie, String couleur){
 		if (partie.getSens() == 1){
 			partie.setSens(0);
 		}

@@ -171,7 +171,7 @@ public class Partie extends Observable{
 			//cartes chiffrees
 			for(int i=0; i<tab.length; i++){
 				for(int j=0; j<num.length; j++){
-					String chaine = tabString[i]+num[j];
+					String chaine = num[j]+tabString[i];
 					listCartes.add(new CarteChiffre( "chiffre",tab[i], num[j], chaine));
 					
 				}
@@ -211,12 +211,15 @@ public class Partie extends Observable{
 		 * Methode permettant de verifier si la carte peut etre jouer sur la derniere carte
 		 * @return true or false
 		 */
-		public boolean estOk(String codeCarte){
+		public boolean estOk(Carte carteAJouer){
+			String codeCarte = null;
 			Carte derniereCarte = talon.getDerniere();
-			for(int i=0; i<getJoueurEnCours().getListCartesJ().size();i++){
-				if(codeCarte.equals(getJoueurEnCours().getListCartesJ().get(i).getCodeString())){
-					carteAJouer = getJoueurEnCours().getListCartesJ().get(i); 
-					if( carteAJouer.getValeur()<10 && derniereCarte.getValeur()<10){
+			//for(int i=0; i<getJoueurEnCours().getListCartesJ().size();i++){
+				//if(codeCarte.equals(getJoueurEnCours().getListCartesJ().get(i).getCodeString())){
+					//carteAJouer = getJoueurEnCours().getListCartesJ().get(i); 
+			System.out.println("Dernire"+derniereCarte);
+			System.out.println(carteAJouer);
+					if(carteAJouer.getValeur()<10 && derniereCarte.getValeur()<10){
 						if (carteAJouer.getCouleur() == derniereCarte.getCouleur() ){
 							return true;
 						}
@@ -227,79 +230,66 @@ public class Partie extends Observable{
 						System.out.println("Vous ne pouvez pas jouer cette carte !");
 						return false;//message ex
 					}
-					else{
-						System.out.println("Else");
-						String codeR;
-						String codeC;
-						if (codeCarte.length() == 2){
-							codeR = codeCarte.substring(0, 0);
-							System.out.println("ElseCodeR");
-
-						}
-						else{
-							codeR = codeCarte.substring(0, 1);
-							System.out.println("ElseCodeR2");
-
-						}
-						if(derniereCarte.getCodeString().length() == 2){
-							codeC = derniereCarte.getCodeString().substring(0, 0);
-							System.out.println("ElseCodeC1");
-
-						}
-						else{
-							codeC = derniereCarte.getCodeString().substring(0, 1);
-							System.out.println("ElseCodeC2");
-
-						}
-						switch (codeR){
-						case "P2":
-							System.out.println("switch");
-
-							if(codeC.equals("P2") || carteAJouer.getCouleur().equals(derniereCarte.getCouleur())){
+					else{				
+							System.out.println("switch action");
+							switch (carteAJouer.getCodeString()){
+							case "P2V":
+							case "P2R":
+							case "P2J":
+							case "P2B":
+								System.out.println("switch P2");
+								if(carteAJouer.getCouleur().equals(derniereCarte.getCouleur()) || derniereCarte.getCodeString().equals("P2R") || derniereCarte.getCodeString().equals("P2J")
+										|| derniereCarte.getCodeString().equals("P2V") || derniereCarte.getCodeString().equals("P2B")){
+									CartePlus carteP = new CartePlus(carteAJouer.getCategorie(), carteAJouer.getCouleur(), carteAJouer.getValeur(), carteAJouer.getCodeString(), 2);
+									carteP.Action(this, null);
+									return true;
+								}
+								else{
+									System.out.println("Pas de Plus 2!");
+									return false;
+								}
+						
+							case "P4V":
+							case "P4R":
+							case "P4J":
+							case "P4B":
+								System.out.println("switch P4");
+								CartePlus carteP4 = new CartePlus(carteAJouer.getCategorie(), carteAJouer.getCouleur(), carteAJouer.getValeur(), carteAJouer.getCodeString(), 4);
+								carteP4.Action(this,"rouge");
+								return true;
+								
+							case "IJ":
+							case "IV":
+							case "IB":
+							case "IR":
+								if(carteAJouer.getCouleur().equals(derniereCarte.getCouleur())){
+									carteAJouer.Action(this,null);
+									return true;
+								}
+								else{
+									System.out.println("Pas d' Interdit !");
+									return false;
+								}							
+							case "C":
 								carteAJouer.Action();
 								return true;
+							case "S":
+								if(carteAJouer.getCouleur().equals(derniereCarte.getCouleur())){
+									carteAJouer.Action();
+									return true;
+								}
+								else{
+									System.out.println("Pas de changement de Sens !");
+									return false;
+								}
+							default : 
+								//affiche("Bien joué");
+								return false;
 							}
-							else{
-								System.out.println("Pas de Plus 2!");
-							}
-							break;
-						case "P4":
-							System.out.println("switch");
-
-							carteAJouer.Action();
-							return true;
-						case "I":
-							if(codeC.equals("I") || carteAJouer.getCouleur().equals(derniereCarte.getCouleur())){
-								carteAJouer.Action();
-								return true;
-							}
-							else{
-								System.out.println("Pas d' Interdit !");
-							}							
-							break;
-						case "C":
-							carteAJouer.Action();
-							return true;
-						case "S":
-							if(codeC.equals("S") || carteAJouer.getCouleur().equals(derniereCarte.getCouleur())){
-								carteAJouer.Action();
-								return true;
-							}
-							else{
-								System.out.println("Pas de changement de Sens !");
-							}
-							break;
-						default : 
-							affiche("Bien joué");
+						}
 							
-						}
-					}
-					
-				}
-			}		
 			// Carte action à ajouter
-			System.out.println("estOk FALSE");
-			return false;
+			//System.out.println("estOk FALSE");
 		}
 		
 		private void affiche(String string) {

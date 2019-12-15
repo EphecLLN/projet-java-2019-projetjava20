@@ -14,8 +14,9 @@ public class CarteAction extends Carte{
 		// TODO Auto-generated constructor stub
 	}
 
+
 	@Override
-	public void Action() {
+	public void Action(Partie partie, String couleur) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -14,8 +14,9 @@ public class CarteInterdit extends CarteAction{
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void Action(Partie partie){
+	public void Action(Partie partie, String couleur){
 		partie.setJoueurEnCours(partie.getJoueurSuivant());
+		
 	}
 
 }

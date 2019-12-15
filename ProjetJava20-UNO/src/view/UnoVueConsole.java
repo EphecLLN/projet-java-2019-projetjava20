@@ -7,6 +7,8 @@ import java.util.Scanner;
 
 import controller.UnoController;
 import model.Carte;
+import model.CarteAction;
+import model.CarteChiffre;
 import model.CartePlus;
 import model.Joueur;
 import model.Partie;
@@ -124,46 +126,34 @@ public class UnoVueConsole extends UnoVue implements Observer{
 
 		}
 		else {
-			for( int i =0; i<model.getListCartes().size();i++){
-				if(reponse == model.getListCartes().get(i).getCodeString()){
-					carte = model.getListCartes().get(i);
+			for( int i =0; i<model.getJoueurEnCours().getListCartesJ().size();i++){
+				System.out.println("FOR");
+				if(reponse.equals(model.getJoueurEnCours().getListCartesJ().get(i).getCodeString())){
+					System.out.println("1ERIF");
+					if(model.getJoueurEnCours().getListCartesJ().get(i).getCategorie().equals("action")){
+						carte = new CarteAction("action", null, i, reponse);
+						carte.setCategorie(model.getJoueurEnCours().getListCartesJ().get(i).getCategorie());
+						carte.setCodeString(model.getJoueurEnCours().getListCartesJ().get(i).getCodeString());
+						carte.setValeur(model.getJoueurEnCours().getListCartesJ().get(i).getValeur());
+						carte.setCouleur(model.getJoueurEnCours().getListCartesJ().get(i).getCouleur());
+					}
+					else{
+						carte = new CarteChiffre("chiffre",null, i , reponse);
+						carte.setCategorie(model.getJoueurEnCours().getListCartesJ().get(i).getCategorie());
+						carte.setCodeString(model.getJoueurEnCours().getListCartesJ().get(i).getCodeString());
+						carte.setValeur(model.getJoueurEnCours().getListCartesJ().get(i).getValeur());
+						carte.setCouleur(model.getJoueurEnCours().getListCartesJ().get(i).getCouleur());
+					}
+					
 				}			
 			}
-			
-			if (model.estOk(reponse)){
+			//carte = new CarteChiffre("chiffre",null, 20 , reponse);
+
+			if (model.estOk(carte)){
 				model.getJoueurEnCours().tirerCarte(carte);
 				model.getTalon().addCarte(carte);
-				if (reponse.length() == 2){
-					codeCarte = reponse.substring(0, 0);
-	
+				affiche("bien joué");
 				}
-				else{
-					codeCarte = reponse.substring(0, 1);
-				}
-				
-				switch (codeCarte){
-				case "P2":
-					carte.Action();
-					break;
-				case "P4":
-					carte.Action();
-					break;
-				case "I":
-					carte.Action();
-					break;
-				case "C":
-					carte.Action();
-					break;
-				case "S":
-					carte.Action();
-					break;
-				default : 
-					affiche("Bien joué");
-					
-				}
-	
-			}
-			
 			else{
 				affiche("Tu ne peux pas jouer cette carte");
 			}

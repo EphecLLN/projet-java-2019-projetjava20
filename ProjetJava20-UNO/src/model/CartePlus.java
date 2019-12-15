@@ -11,10 +11,6 @@ public class CartePlus extends CarteAction {
 	
 	private int nbPlus; // nombre de carte à piocher 
 
-	public CartePlus(String categorie, String couleur, int valeur, String codeString) {
-		super(categorie, couleur, valeur, codeString);
-		// TODO Auto-generated constructor stub
-	}
 	
 	public CartePlus(String categorie, String couleur, int valeur, String codeString, int nbPlus){
 		super(categorie, couleur, valeur, codeString);
@@ -23,18 +19,19 @@ public class CartePlus extends CarteAction {
 
 	
 	public void Action(Partie partie, String couleur){
-		if(nbPlus==2) ActionPlus2(partie);
+		if(nbPlus==2) ActionPlus2(partie, couleur);
 		else ActionPlus4(partie,couleur);
 		
 	}
 	
 	
-	public void ActionPlus2(Partie partie){
+	public void ActionPlus2(Partie partie, String couleur){
 		int i=0;
 		while(i<3){
 			partie.getPioche().retirer(partie.getJoueurSuivant());
 			i++;
 		}
+		System.out.println("Pioche p2");
 	}
 	
 	public void ActionPlus4(Partie partie, String couleur){
@@ -58,7 +55,25 @@ public class CartePlus extends CarteAction {
 			break;
 		default : 
 			System.out.println("La couleur n'est pas au bon format");
+		}
 	}
+
+
+	/**
+	 * @return the nbPlus
+	 */
+	public int getNbPlus() {
+		return nbPlus;
 	}
+
+
+	/**
+	 * @param nbPlus the nbPlus to set
+	 */
+	public void setNbPlus(int nbPlus) {
+		this.nbPlus = nbPlus;
+	}
+	
+	
 		
 }

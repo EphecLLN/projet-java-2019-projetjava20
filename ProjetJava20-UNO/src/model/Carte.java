@@ -11,12 +11,13 @@ import java.util.ArrayList;
  */
 public abstract class Carte{
 	
-	private String categorie;
+	protected String categorie;
 	protected String couleur;
-	private int valeur;
-	private String codeString;
-
+	protected int valeur;
+	protected String codeString;
 	protected ArrayList<Carte> listCartes = new ArrayList<Carte>();
+	
+	
 	/**
 	 * Constructeur de Carte
 	 * @param categorie
@@ -38,7 +39,7 @@ public abstract class Carte{
 	}
 	
 	
-	public abstract void Action();
+	public abstract void Action(Partie partie, String couleur);
 
 	
 	
@@ -113,6 +114,12 @@ public abstract class Carte{
 	 */
 	public void setListCartes(ArrayList<Carte> listCartes) {
 		this.listCartes = listCartes;
+	}
+
+
+	public void Action() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	
