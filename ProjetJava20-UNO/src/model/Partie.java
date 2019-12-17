@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.Observable;
+import java.util.Scanner;
 
 /**
  * @author Courtin
@@ -22,6 +23,7 @@ public class Partie extends Observable{
 	private Pioche pioche;
 	private Talon talon;
 	private Carte carteAJouer;
+
 
 	
 	/**
@@ -48,21 +50,27 @@ public class Partie extends Observable{
 	 * @return
 	 */
 	public Joueur determinerJoueur () {
+		boolean bool = true;
 		 if (sens==0){
-   		   for (int i=0; i<listJoueurs.size(); i++) {
+   		   for (int i=0; bool & i<listJoueurs.size(); i++) {
 			  if (listJoueurs.get(i).equals(joueurEnCours)) {
 				if(i==listJoueurs.size()-1){
-					joueurEnCours=listJoueurs.get(0);
-					joueurSuivant = listJoueurs.get(1);
+					setJoueurEnCours(listJoueurs.get(0));
+					setJoueurSuivant(listJoueurs.get(1));
+					bool = false;
 				}
 				else if(i==listJoueurs.size()-2){
-					joueurEnCours=listJoueurs.get(i+1);
-					joueurSuivant = listJoueurs.get(0);
+					setJoueurEnCours(listJoueurs.get(i+1));					
+					setJoueurSuivant(listJoueurs.get(0));
+					bool=false;
+
 				}
 				else{
-					joueurEnCours=listJoueurs.get(i+1);
+					setJoueurEnCours(listJoueurs.get(i+1));
+					bool=false;
 				}
 			  }
+
 		 	} 
 		 }
 		 
@@ -85,7 +93,7 @@ public class Partie extends Observable{
 			  } 
 		 }
 		 
-		return joueurEnCours;
+		return getJoueurEnCours();
 			 
 	 }
 	 
@@ -95,7 +103,7 @@ public class Partie extends Observable{
 	 * @return 
 	  * 
 	  */
-	 public Joueur determinerGagnant() {
+	 public boolean determinerGagnant() {
 		//parcourir la liste de carte de chaque joueur, verifier si elle est vide ou non, retourner le joueur dont la liste est vide et alors il est gagnant
 		//boucle for 
 		 for (int i=0; i<listJoueurs.size(); i++) {
@@ -104,12 +112,15 @@ public class Partie extends Observable{
 			 ArrayList<Carte> cartes = j.getListCartesJ();
 			 
 			 if (cartes.isEmpty()) {
-				 gagnant =j;
+				 setGagnant(j);
+				 return true;
 			 };
+			 
 		  }	
 		 this.setChanged();
 		 this.notifyObservers();
-		 return gagnant;
+		 return false;
+		
 	}
 	 
 	 /**
@@ -118,7 +129,7 @@ public class Partie extends Observable{
 	  */
 	 public boolean determinerVainqueur() {
 		 for (int i=0; i<listJoueurs.size(); i++) { 
-			 if(listJoueurs.get(i).getScore()>500){
+			 if(listJoueurs.get(i).getScore()>100){
 				 //vainqueur = listeJoueurs.get(i);
 				 setVainqueur(listJoueurs.get(i));
 				 this.setChanged();
@@ -135,10 +146,8 @@ public class Partie extends Observable{
 		 * @param gagnant
 		 * @return
 		 */
-		public int calculerScore (Joueur gagnant) {
-			 
-			 int score = 0;
-			
+		public void calculerScore (Joueur gagnant) {
+			 			
 			 for(int i=0; i<getListJoueurs().size(); i++) {
 				 
 				 int scoreI = 0;
@@ -153,9 +162,7 @@ public class Partie extends Observable{
 			 }
 			
 			 setChanged();
-			 notifyObservers();
-			 return score;
-			 
+			 notifyObservers();			 
 		 }
 		
 		/**
@@ -217,8 +224,6 @@ public class Partie extends Observable{
 			//for(int i=0; i<getJoueurEnCours().getListCartesJ().size();i++){
 				//if(codeCarte.equals(getJoueurEnCours().getListCartesJ().get(i).getCodeString())){
 					//carteAJouer = getJoueurEnCours().getListCartesJ().get(i); 
-			System.out.println("Dernire"+derniereCarte);
-			System.out.println(carteAJouer);
 					if(carteAJouer.getValeur()<10 && derniereCarte.getValeur()<10){
 						if (carteAJouer.getCouleur() == derniereCarte.getCouleur() ){
 							return true;
@@ -231,13 +236,12 @@ public class Partie extends Observable{
 						return false;//message ex
 					}
 					else{				
-							System.out.println("switch action");
+						if(carteAJouer.getCategorie().equals("action")){	
 							switch (carteAJouer.getCodeString()){
 							case "P2V":
 							case "P2R":
 							case "P2J":
 							case "P2B":
-								System.out.println("switch P2");
 								if(carteAJouer.getCouleur().equals(derniereCarte.getCouleur()) || derniereCarte.getCodeString().equals("P2R") || derniereCarte.getCodeString().equals("P2J")
 										|| derniereCarte.getCodeString().equals("P2V") || derniereCarte.getCodeString().equals("P2B")){
 									CartePlus carteP = new CartePlus(carteAJouer.getCategorie(), carteAJouer.getCouleur(), carteAJouer.getValeur(), carteAJouer.getCodeString(), 2);
@@ -245,7 +249,7 @@ public class Partie extends Observable{
 									return true;
 								}
 								else{
-									System.out.println("Pas de Plus 2!");
+									affiche("Pas de Plus 2!");
 									return false;
 								}
 						
@@ -255,46 +259,128 @@ public class Partie extends Observable{
 							case "P4B":
 								System.out.println("switch P4");
 								CartePlus carteP4 = new CartePlus(carteAJouer.getCategorie(), carteAJouer.getCouleur(), carteAJouer.getValeur(), carteAJouer.getCodeString(), 4);
-								carteP4.Action(this,"rouge");
+								String couleur = null;
+								Scanner sc = new Scanner(System.in);
+								System.out.println("Entrez la nouvelle couleur, V-B-R-J : ");
+								couleur = sc.nextLine();
+								carteP4.Action(this,couleur);
+								carteAJouer.setCouleur(carteP4.getCouleur());
 								return true;
 								
 							case "IJ":
 							case "IV":
 							case "IB":
 							case "IR":
-								if(carteAJouer.getCouleur().equals(derniereCarte.getCouleur())){
-									carteAJouer.Action(this,null);
+								if(carteAJouer.getCouleur().equals(derniereCarte.getCouleur())||derniereCarte.getCodeString().equals("IJ") || derniereCarte.getCodeString().equals("IV")
+										||derniereCarte.getCodeString().equals("IB") ||derniereCarte.getCodeString().equals("IR")){
+									CarteInterdit carteI = new CarteInterdit(carteAJouer.getCategorie(), carteAJouer.getCouleur(), carteAJouer.getValeur(), carteAJouer.getCodeString());
+									carteI.Action(this,null);
 									return true;
 								}
 								else{
-									System.out.println("Pas d' Interdit !");
+									affiche("Pas d' Interdit !");
 									return false;
 								}							
-							case "C":
-								carteAJouer.Action();
+							case "CJ":
+							case "CV":
+							case "CB":
+							case "CR":
+								CarteCouleur carteC = new CarteCouleur(carteAJouer.getCategorie(), carteAJouer.getCouleur(), carteAJouer.getValeur(), carteAJouer.getCodeString());
+								String couleurC = null;
+								System.out.println("Entrez la nouvelle couleur, V-B-R-J : ");
+								Scanner sc1 = new Scanner(System.in);
+								couleurC = sc1.nextLine();
+								carteC.Action(this,couleurC);
+								carteAJouer.setCouleur(carteC.getCouleur());
 								return true;
-							case "S":
+								
+							case "SJ":
+							case "SV":
+							case "SB":
+							case "SR":
 								if(carteAJouer.getCouleur().equals(derniereCarte.getCouleur())){
-									carteAJouer.Action();
+									CarteInversion carteS = new CarteInversion(carteAJouer.getCategorie(), carteAJouer.getCouleur(), carteAJouer.getValeur(), carteAJouer.getCodeString());
+									carteS.Action();
 									return true;
 								}
 								else{
-									System.out.println("Pas de changement de Sens !");
+									affiche("Pas de changement de Sens !");
 									return false;
 								}
 							default : 
-								//affiche("Bien joué");
+								affiche(" FALSE ");
 								return false;
 							}
 						}
+					}
+					
+					if(carteAJouer.getCategorie().equals("chiffre")){
+						switch (derniereCarte.getCodeString()){
+						case "P2V":
+						case "P2R":
+						case "P2J":
+						case "P2B":
+							if(carteAJouer.getCouleur().equals(derniereCarte.getCouleur())){
+								return true;
+							}
+							else{
+								affiche("Pas la même couleur !");
+								return false;
+							}
+					
+						case "P4V":
+						case "P4R":
+						case "P4J":
+						case "P4B":
+						case "CJ":
+						case "CV":
+						case "CB":
+						case "CR":
+							if(carteAJouer.getCouleur().equals(derniereCarte.getCouleur())){
+								return true;
+							}
+							System.out.println("pas la bonne couleur ");
+							return false;							
+						case "IJ":
+						case "IV":
+						case "IB":
+						case "IR":
+							if(carteAJouer.getCouleur().equals(derniereCarte.getCouleur())){
+								return true;
+							}
+							else{
+								affiche("Pas la bonne couleur !");
+								return false;
+							}							
 							
+						case "SJ":
+						case "SV":
+						case "SB":
+						case "SR":
+							if(carteAJouer.getCouleur().equals(derniereCarte.getCouleur())){
+								return true;
+							}
+							else{
+								affiche("Pas la bonne couleur !");
+								return false;
+							}
+						default : 
+							affiche(" FALSE ");
+							return false;
+						}
+				}
+					return false;
+		}
+
+		
+					
 			// Carte action à ajouter
 			//System.out.println("estOk FALSE");
-		}
+		
 		
 		private void affiche(String string) {
 			// TODO Auto-generated method stub
-			
+			System.out.println(string);
 		}
 
 
@@ -324,8 +410,9 @@ public class Partie extends Observable{
 			
 			
 			setJoueurEnCours(lj.get(0));
+			setJoueurSuivant(lj.get(1));
 
-			determinerJoueur();
+			//determinerJoueur();
 			
 					
 		}

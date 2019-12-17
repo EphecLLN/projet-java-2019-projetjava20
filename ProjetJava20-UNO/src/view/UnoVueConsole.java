@@ -23,7 +23,9 @@ public class UnoVueConsole extends UnoVue implements Observer{
 	
 	
 	protected Scanner sc;
-	private String codeCarte = "" ;
+	//private String codeCarte = "" ;
+	protected Carte carte = null;
+
 
 
 	
@@ -85,7 +87,15 @@ public class UnoVueConsole extends UnoVue implements Observer{
 
 		controller.initJeu(lj);
 		
+		
 		manche();
+		
+/*		model.determinerJoueur();
+
+		System.out.println(model.determinerJoueur());
+		model.setJoueurEnCours(model.getJoueurSuivant());
+		manche();
+		*/
 		
 		affiche("Exit");
 		System.exit(0);
@@ -97,39 +107,32 @@ public class UnoVueConsole extends UnoVue implements Observer{
 	 */
 	public void manche(){
 
-		affiche("Talon : "+model.getTalon().getDerniere().toSring());
-
-		System.out.println(model.getJoueurEnCours());
-		affiche("C'est à toi de jouer, voici tes cartes : ");
+		//affiche("Talon : "+model.getTalon());
+		affiche(model.getJoueurEnCours().toString()+" C'est à toi de jouer, voici tes cartes : ");
 		for(int i=0; i<model.getJoueurEnCours().getListCartesJ().size() ; i++){
 			
-			System.out.println(model.getJoueurEnCours().getListCartesJ().get(i).toSring());
+			affiche(model.getJoueurEnCours().getListCartesJ().get(i).toString());
 		}
 		
-		affiche("Talon : "+model.getTalon().getDerniere().toSring());
+		affiche("Talon : "+model.getTalon().getDerniere().toString());
 		
-		affiche("Joue une carte pu écrit pioche pour une nouvelle carte (chiffre+Première lettre   ex: 5V)");
+		affiche("Joue une carte pu écrit pioche pour une nouvelle carte (chiffre+Première lettre de la couleur Ex: 5V)");
 		
 		String reponse = sc.nextLine();
-		
-		Carte carte = null;
-		
+				
 		if (reponse.equals("pioche")){
-			System.out.println("test1");
 			model.getPioche().retirer(model.getJoueurEnCours());
-			System.out.println("test2");
 			manche();
 		}
 		else if (reponse.equals("passe")){
-			//d
 			model.determinerJoueur();
+			//System.out.println(model.determinerJoueur());
+			manche();
 
 		}
 		else {
 			for( int i =0; i<model.getJoueurEnCours().getListCartesJ().size();i++){
-				System.out.println("FOR");
 				if(reponse.equals(model.getJoueurEnCours().getListCartesJ().get(i).getCodeString())){
-					System.out.println("1ERIF");
 					if(model.getJoueurEnCours().getListCartesJ().get(i).getCategorie().equals("action")){
 						carte = new CarteAction("action", null, i, reponse);
 						carte.setCategorie(model.getJoueurEnCours().getListCartesJ().get(i).getCategorie());
@@ -147,15 +150,45 @@ public class UnoVueConsole extends UnoVue implements Observer{
 					
 				}			
 			}
-			//carte = new CarteChiffre("chiffre",null, 20 , reponse);
 
 			if (model.estOk(carte)){
 				model.getJoueurEnCours().tirerCarte(carte);
 				model.getTalon().addCarte(carte);
-				affiche("bien joué");
+				affiche("Bien joué");
+				//affiche("Talon : "+model.getTalon());
+
+				if(model.determinerGagnant()){
+					model.calculerScore(model.getGagnant());
+					if(model.determinerVainqueur()){
+						affiche("BRAVO!!!");
+						System.exit(0);
+					}
+					else{
+						affiche("Gagnant de la manche : "+model.getGagnant()+ "avec : "+model.getScore());
+						for(int i=0; i<model.getListJoueurs().size();i++){
+							model.getListJoueurs().get(i).setListCartesJ(null);
+						}
+						model.getPioche().distribuer();
+						model.getPioche().melanger();
+						model.getTalon().getListCartesT().add(model.getPioche().getDerniereCarte()); // ajoute la derniere carte de la pioche au talon
+						model.getPioche().getListCartesP().remove(model.getPioche().getDerniereCarte());
+						
+						while(model.getTalon().getDerniere().getCategorie().equals("action")){
+							model.getTalon().getListCartesT().add(model.getPioche().getDerniereCarte()); // ajoute la derniere carte de la pioche au talon
+							model.getPioche().getListCartesP().remove(model.getPioche().getDerniereCarte());
+
+						}
+						model.determinerJoueur();
+						manche();
+					}
 				}
+				model.determinerJoueur();
+				manche();
+				
+			}
 			else{
 				affiche("Tu ne peux pas jouer cette carte");
+				manche();
 			}
 		
 		}
@@ -163,18 +196,10 @@ public class UnoVueConsole extends UnoVue implements Observer{
 	}
 	
 	
-	public void tourJoueur(){
-		
-	}
-
-
 
 	@Override
 	public void update(Observable o, Object arg) {
-		//System.out.println(model);
-		//menu();
 		model.getJoueurEnCours();
-		//model.getJoueurEnCours().getListCartesJ();
 		model.getListJoueurs();
 		model.getPioche();
 		model.getTalon();

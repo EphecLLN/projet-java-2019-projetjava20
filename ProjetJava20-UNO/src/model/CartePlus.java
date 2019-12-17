@@ -26,7 +26,7 @@ public class CartePlus extends CarteAction {
 	
 	
 	public void ActionPlus2(Partie partie, String couleur){
-		int i=0;
+		int i=1;
 		while(i<3){
 			partie.getPioche().retirer(partie.getJoueurSuivant());
 			i++;
@@ -35,23 +35,24 @@ public class CartePlus extends CarteAction {
 	}
 	
 	public void ActionPlus4(Partie partie, String couleur){
-		int i=0;
+		int i=1;
 		while(i<5){
 			partie.getPioche().retirer(partie.getJoueurSuivant());
 			i++;
 		}
 		switch (couleur){
 		case "V": 
-			setCouleur("vert");
+			this.setCouleur("vert");
+			System.out.println(this.getCouleur());
 			break;
 		case "B":
-			setCouleur("bleu");
+			this.setCouleur("bleu");
 			break;
 		case "R":
-			setCouleur("rouge");
+			this.setCouleur("rouge");
 			break;
 		case "J":
-			setCouleur("jaune");
+			this.setCouleur("jaune");
 			break;
 		default : 
 			System.out.println("La couleur n'est pas au bon format");

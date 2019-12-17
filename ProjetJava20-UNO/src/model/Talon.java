@@ -23,7 +23,7 @@ public class Talon {
 
 
 	public String toString(){
-		return this.getDerniere().toString();
+		return this.getDerniere().toString() + " Couleur : "+ this.getDerniere().getCouleur();
 	}
 
 	/**

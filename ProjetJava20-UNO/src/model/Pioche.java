@@ -36,7 +36,6 @@ public class Pioche {
 		Carte lastCart = listCartesP.get(0);
 		joueur.getListCartesJ().add(lastCart);
 		listCartesP.remove(0);
-		//return lastCart;
 	}
 	
 	/**

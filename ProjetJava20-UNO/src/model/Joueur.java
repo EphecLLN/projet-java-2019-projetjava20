@@ -43,9 +43,16 @@ public class Joueur {
 	 * @param carte
 	 */
 	public void tirerCarte(Carte carte){
-		if (listCartesJ.contains(carte)){
+		for(int i=0;i<getListCartesJ().size();i++){
+			if(getListCartesJ().get(i).getCodeString().equals(carte.getCodeString())){
+				listCartesJ.remove(i);
+			}
+		}
+		/*if (listCartesJ.contains(carte)){
 			listCartesJ.remove(carte);
 		}
+		System.out.println("tirer carte");
+		listCartesJ.remove(carte);*/
 		
 	}
 

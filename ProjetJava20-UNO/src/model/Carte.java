@@ -34,7 +34,7 @@ public abstract class Carte{
 	}
 	
 	
-	public String toSring(){
+	public String toString(){
 		return this.codeString ;
 	}
 	
