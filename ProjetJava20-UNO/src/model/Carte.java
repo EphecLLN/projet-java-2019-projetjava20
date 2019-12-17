@@ -34,6 +34,9 @@ public abstract class Carte{
 	}
 	
 	
+	/**
+	 * Methode toString permettant l'affichage d'une carte proprement
+	 */
 	public String toString(){
 		return this.codeString ;
 	}

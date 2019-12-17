@@ -13,15 +13,26 @@ public class Talon {
 
 	public ArrayList<Carte> listCartesT;
 	
+	/**
+	 * Constructeur de Talon
+	 * @param listCartesT
+	 */
 	public Talon(ArrayList<Carte> listCartesT){
 		this.listCartesT = listCartesT;
 	}
 	
+	/**
+	 * Methode permettant d'ajouter une carte au talon
+	 * @param carte
+	 */
 	public void addCarte(Carte carte){
 		listCartesT.add(carte);
 	}
 
 
+	/**
+	 * Methode toString permettant d'afficher proprement le talon
+	 */
 	public String toString(){
 		return this.getDerniere().toString() + " Couleur : "+ this.getDerniere().getCouleur();
 	}

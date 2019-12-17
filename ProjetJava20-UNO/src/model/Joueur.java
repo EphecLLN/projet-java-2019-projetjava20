@@ -48,12 +48,6 @@ public class Joueur {
 				listCartesJ.remove(i);
 			}
 		}
-		/*if (listCartesJ.contains(carte)){
-			listCartesJ.remove(carte);
-		}
-		System.out.println("tirer carte");
-		listCartesJ.remove(carte);*/
-		
 	}
 
 	/**

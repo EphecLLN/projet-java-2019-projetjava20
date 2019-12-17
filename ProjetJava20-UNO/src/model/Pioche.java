@@ -10,22 +10,19 @@ import java.util.Collections;
 public class Pioche {
 	
 	private ArrayList<Carte> listCartesP;
-	//private int nbCarte = listCartesP.size();
 	
 	/**
-	 * Constructeur
+	 * Constructeur de Pioche
 	 * @param listCartesP
 	 */
 	public Pioche(ArrayList<Carte> listCartesP){
 		this.listCartesP = listCartesP;
-
 	}
 
 	/**
 	 * Melange le tas de cartes
 	 */
 	public void melanger(){
-	
 		Collections.shuffle(listCartesP);
 	}
 	
