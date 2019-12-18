@@ -13,18 +13,28 @@ public class Joueur {
 	
 	private String nom;
 	private int nbCartes;
+<<<<<<< HEAD
 	private ArrayList <Carte> listCartesJ;
 	protected int score;
+=======
+	private ArrayList <Carte> listCartesJ = new ArrayList<Carte>();
+	protected int score;
+	protected static ArrayList<Joueur> listJoueurs = new ArrayList<Joueur>();
+>>>>>>> master
 	
 	/**
 	 * Constructeur de la classe Joueur
 	 * @param nom
-	 * @param listCartes
+	 * @param listCartesJ
 	 */
 	public Joueur(String nom, ArrayList<Carte> listCartesJ, int score){
 		this.nom  = nom;
 		this.listCartesJ = listCartesJ;
 		this.score = score;
+<<<<<<< HEAD
+=======
+		listJoueurs.add(this);
+>>>>>>> master
 	}
 	
 	/**
@@ -36,15 +46,23 @@ public class Joueur {
 	}
 	
 	/**
+	 * 
 	 * Methode permettant de retirer une carte de la main du joueur (retirer de listCartes)
 	 * @param carte
 	 */
 	public void tirerCarte(Carte carte){
+<<<<<<< HEAD
 		if (listCartesJ.contains(carte)){
 			listCartesJ.remove(carte);
 		}
 		else{//erreur : choisir une autre carte
 			
+=======
+		for(int i=0;i<getListCartesJ().size();i++){
+			if(getListCartesJ().get(i).getCodeString().equals(carte.getCodeString())){
+				listCartesJ.remove(i);
+			}
+>>>>>>> master
 		}
 	}
 
@@ -52,6 +70,32 @@ public class Joueur {
 	 * Methode permettant au joueur d'indiquer qu'il lui reste une seule carte
 	 */
 	public void uno(){
+		
+	}
+	
+	/**
+	 * Methode permettant de piocher une nouvelle carte dans la pioche
+	 */
+	public void piocher(){
+		
+	}
+	
+	/**
+	 * Methode equals 
+	 */
+	public boolean equals(Object obj){
+		if (this==obj){
+			return true;
+		}
+		if (obj==null){
+			return false;
+		}
+		return false;
+	}
+	
+	public String toString(){
+
+		return getNom();
 		
 	}
 	
@@ -103,6 +147,16 @@ public class Joueur {
 	 */
 	public int getScore() {
 		return score;
+<<<<<<< HEAD
+	}
+
+	/**
+	 * @param score the score to set
+	 */
+	public void setScore(int score) {
+		this.score = score;
+=======
+>>>>>>> master
 	}
 
 	/**
@@ -111,6 +165,22 @@ public class Joueur {
 	public void setScore(int score) {
 		this.score = score;
 	}
+
+	/**
+	 * @return the listJoueurs
+	 */
+	public static ArrayList<Joueur> getListJoueurs() {
+		return listJoueurs;
+	}
+
+	/**
+	 * @param listJoueurs the listJoueurs to set
+	 */
+	public void setListJoueurs(ArrayList<Joueur> listJoueurs) {
+		Joueur.listJoueurs = listJoueurs;
+	}
+	
+	
 	
 	
 }
